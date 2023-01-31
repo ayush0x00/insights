@@ -4,10 +4,10 @@
   "proposedName": "Insights",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ayush0x00/insights.git"
+    "url": "https://github.com/MetaMask/template-snap-monorepo.git"
   },
   "source": {
-    "shasum": "ItTSJ6zFFF8eSvZWuvRi/abL1hiG8OYmqsbE+lnpWJU=",
+    "shasum": "CFKYHF1bkTc6A31ST2RZHHXVYBHmF/BlBHPhdF7t2WE=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",

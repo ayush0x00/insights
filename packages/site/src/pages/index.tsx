@@ -14,6 +14,7 @@ import {
   SendHelloButton,
   Card,
 } from '../components';
+import axios from "axios"
 
 enum TransactionConstants {
   // The address of an arbitrary contract that will reject any transactions it receives
@@ -127,8 +128,17 @@ const Index = () => {
   };
 
   const handleSendHelloClick = async () => {
+
+    // Send snap RPC request to store "origin" field
     try {
-      // await sendHello();
+      await sendHello();
+    } catch(e){
+      console.log(e)
+      dispatch({ type: MetamaskActions.SetError, payload: e });
+    }
+
+    // perform transaction 
+    try {
       const [from] = (await window.ethereum.request({
         method: 'eth_requestAccounts',
       })) as string[];
@@ -137,17 +147,18 @@ const Index = () => {
         throw new Error('No accounts found');
       }
 
-      await window.ethereum.request({
+      const details = await window.ethereum.request({
         method: 'eth_sendTransaction',
         params: [
           {
             from,
             to: TransactionConstants.Address,
-            value: '0x0',
+            value: "0x0",
             data: TransactionConstants.UpdateWithdrawalAccount,
           },
         ],
       });
+      console.log(details)
     } catch (e) {
       console.error(e);
       dispatch({ type: MetamaskActions.SetError, payload: e });
