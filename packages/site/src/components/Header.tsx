@@ -1,77 +1,58 @@
-import { useContext } from 'react';
-import styled, { useTheme } from 'styled-components';
-import { MetamaskActions, MetaMaskContext } from '../hooks';
-import { connectSnap, getThemePreference, getSnap } from '../utils';
-import { HeaderButtons } from './Buttons';
-import { SnapLogo } from './SnapLogo';
-import { Toggle } from './Toggle';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Anchor, Drawer, Button } from 'antd';
+const { Link } = Anchor;
 
-const HeaderWrapper = styled.header`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2.4rem;
-  border-bottom: 1px solid ${(props) => props.theme.colors.border.default};
-`;
+function AppHeader() {
+  const [visible, setVisible] = useState(false);
 
-const Title = styled.p`
-  font-size: ${(props) => props.theme.fontSizes.title};
-  font-weight: bold;
-  margin: 0;
-  margin-left: 1.2rem;
-  ${({ theme }) => theme.mediaQueries.small} {
-    display: none;
-  }
-`;
-
-const LogoWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const RightContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const Header = ({
-  handleToggleClick,
-}: {
-  handleToggleClick(): void;
-}) => {
-  const theme = useTheme();
-  const [state, dispatch] = useContext(MetaMaskContext);
-
-  const handleConnectClick = async () => {
-    try {
-      await connectSnap();
-      const installedSnap = await getSnap();
-
-      dispatch({
-        type: MetamaskActions.SetInstalled,
-        payload: installedSnap,
-      });
-    } catch (e) {
-      console.error(e);
-      dispatch({ type: MetamaskActions.SetError, payload: e });
-    }
+  const showDrawer = () => {
+    setVisible(true);
   };
+
+  const onClose = () => {
+    setVisible(false);
+  };
+
   return (
-    <HeaderWrapper>
-      <LogoWrapper>
-        <SnapLogo color={theme.colors.icon.default} size={36} />
-        <Title>template-snap</Title>
-      </LogoWrapper>
-      <RightContainer>
-        <Toggle
-          onToggle={handleToggleClick}
-          defaultChecked={getThemePreference()}
-        />
-        <HeaderButtons state={state} onConnectClick={handleConnectClick} />
-      </RightContainer>
-    </HeaderWrapper>
+    <div className="container-fluid">
+      <div className="header">
+        <div className="logo">
+          <i className="fas fa-bolt"></i>
+          <a href="http://google.com">Metamask Snap</a>
+        </div>
+        <div className="mobileHidden">
+          <Anchor >
+            <Link href="#heronpm i --save @fortawesome/fontawesome-svg-core
+" title="Home" />
+            <Link href="#about" title="About" />
+            <Link href="#feature" title="Features" />
+            <Link href="#faq" title="FAQ" />
+            <Link href="#contact" title="Contact" />
+          </Anchor>
+        </div>
+        <div className="mobileVisible">
+          <Button type="primary" onClick={showDrawer}>
+            <i className="fas fa-bars">fejk</i>
+          </Button>
+          <Drawer
+            placement="right"
+            closable={false}
+            onClose={onClose}
+            visible={visible}
+          >
+            {/* <Anchor > */}
+              <Link href="#hero" title="Home" />
+              <Link href="#about" title="About" />
+              <Link href="#feature" title="Features" />
+              <Link href="#faq" title="FAQ" />
+              <Link href="#contact" title="Contact" />
+            {/* </Anchor> */}
+          </Drawer>
+        </div>
+      </div>
+    </div>
   );
-};
+}
+
+export default AppHeader;
