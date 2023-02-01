@@ -8,7 +8,9 @@ import './components/css/App.css';
 import { Breadcrumb, Button } from 'antd';
 import { Layout, Menu, theme } from 'antd';
 import AppHeader from './components/Header';
-import { Content } from 'antd/es/layout/layout';
+import AppFooter from './components/footer';
+import AppHome from './components/home';
+import { Content, Footer } from 'antd/es/layout/layout';
 
 const { Header } = Layout;
 const Wrapper = styled.div`
@@ -30,6 +32,12 @@ export const App: FunctionComponent<AppProps> = ({ children }) => {
       <Header>
         <AppHeader />
       </Header>
+      <Content>
+        <AppHome/>
+      </Content>
+      <Footer>
+        <AppFooter/>  
+      </Footer>
     </Layout>
     // <>
     //   {/* <GlobalStyle /> */}

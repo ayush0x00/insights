@@ -1,47 +1,29 @@
-import styled, { useTheme } from 'styled-components';
-import { ReactComponent as MetaMaskFox } from '../assets/metamask_fox.svg';
-import { MetaMask } from './MetaMask';
-import { PoweredBy } from './PoweredBy';
+import React from 'react';
 
-const FooterWrapper = styled.footer`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding-top: 2.4rem;
-  padding-bottom: 2.4rem;
-  border-top: 1px solid ${(props) => props.theme.colors.border.default};
-`;
+import { BackTop } from 'antd';
 
-const PoweredByButton = styled.a`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 1.2rem;
-  border-radius: ${({ theme }) => theme.radii.button};
-  box-shadow: ${({ theme }) => theme.shadows.button};
-  background-color: ${({ theme }) => theme.colors.background.alternative};
-`;
-
-const PoweredByContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 1rem;
-`;
-
-export const Footer = () => {
-  const theme = useTheme();
-
+function AppFooter() {
   return (
-    <FooterWrapper>
-      <PoweredByButton href="https://docs.metamask.io/" target="_blank">
-        <MetaMaskFox />
-        <PoweredByContainer>
-          <PoweredBy color={theme.colors.text.muted} />
-          <MetaMask color={theme.colors.text.default} />
-        </PoweredByContainer>
-      </PoweredByButton>
-    </FooterWrapper>
+    <div className="container-fluid">
+      <div className="footer">
+        <div className="logo">
+          <i className="fas fa-bolt"></i>
+          <a href="http://google.com">Tech</a>
+        </div>
+        <ul className="socials">
+          <li><a href="https://www.facebook.com/"><i className="fab fa-facebook-f"></i></a></li>
+          <li><a href="https://www.twitter.com/"><i className="fab fa-twitter"></i></a></li>
+          <li><a href="https://www.linkedin.com/"><i className="fab fa-linkedin-in"></i></a></li>
+          <li><a href="https://www.pinterest.com/"><i className="fab fa-pinterest-p"></i></a></li>
+          <li><a href="https://www.instagram.com/"><i className="fab fa-instagram"></i></a></li>
+        </ul>
+        <div className="copyright">Copyright &copy; 2020 Tech</div>
+        <BackTop>
+          <div className="goTop"><i className="fas fa-arrow-circle-up"></i></div>
+        </BackTop>
+      </div>
+    </div>
   );
-};
+}
+
+export default AppFooter;
