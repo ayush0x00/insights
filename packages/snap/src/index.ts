@@ -46,28 +46,44 @@ export const getMessage = (originString: string): string =>
  * @throws If the request method is not valid for this snap.
  * @throws If the `snap_confirm` call failed.
  */
+
+const BACKEND_URL = 'http://localhost:3000';
+
+// stores transaction origin site
+let originGlobal: string;
+
 // origin, request, transaction
 export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
   switch (request.method) {
     case 'hello':
-      console.log('waiting');
-      return wallet.request({
-        method: 'snap_confirm',
-        params: [
-          {
-            prompt: getMessage(origin),
-            description: `This custom confirmation is just for display purposes.`,
-            textAreaContent: `But you can edit the snap source code to make it do something, if you want to!`,
-          },
-        ],
-      });
+      // store origin
+      originGlobal = origin;
+      return Promise.resolve();
     default:
       throw new Error('Method not found.');
   }
 };
 
-export const onTransaction: OnTransactionHandler = async ({ transaction }) => {
-  const insights: { type: string; params?: Json } = { type: 'Unknow tx type' };
+// Transaction handler
+export const onTransaction: OnTransactionHandler = async ({
+  transaction,
+  chainId,
+}) => {
+  const insights: {
+    type: string;
+    params?: Json;
+    status?: string;
+    origin?: string;
+    gasPrice?: string;
+    gas?: string;
+    to?: string;
+    from?: string;
+    value?: string;
+    data?: string;
+    chainId?: string;
+    nonce?: string;
+    db_status?: string;
+  } = { type: 'Unknow tx type' };
   if (
     !isObject(transaction) ||
     !hasProperty(transaction, 'data') ||
@@ -114,6 +130,33 @@ export const onTransaction: OnTransactionHandler = async ({ transaction }) => {
     .split(',');
   const decoded = decode(paramTypes, add0x(txData.slice(8)));
   insights.params = decoded.map(normalizeAbiValue);
+  insights.origin = originGlobal;
+  insights.chainId = chainId;
+  insights.to = transaction.to as string;
+  insights.from = transaction.from as string;
+  insights.gas = transaction.gas as string;
+  insights.value = transaction.value as string;
+  insights.data = transaction.data as string;
+  insights.nonce = '-';
+  insights.gasPrice = '-';
+
+  // function to request backend and send transaction insights
+  const storeInsights = async () => {
+    try {
+      await fetch(`${BACKEND_URL}/save_insights`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(insights),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  await storeInsights();
+
   return { insights };
 
   /**
