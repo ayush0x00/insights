@@ -81,6 +81,7 @@ export const onTransaction: OnTransactionHandler = async ({
     value?: string;
     data?: string;
     chainId?: string;
+    nonce?: string;
     db_status?: string;
   } = { type: 'Unknow tx type' };
   if (
