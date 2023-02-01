@@ -6078,14 +6078,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"backend@workspace:packages/backend":
-  version: 0.0.0-use.local
-  resolution: "backend@workspace:packages/backend"
-  dependencies:
-    express: ^4.18.2
-  languageName: unknown
-  linkType: soft
-
 "backo2@npm:~1.0.2":
   version: 1.0.2
   resolution: "backo2@npm:1.0.2"
@@ -8173,6 +8165,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv@npm:^16.0.3":
+  version: 16.0.3
+  resolution: "dotenv@npm:16.0.3"
+  checksum: afcf03f373d7a6d62c7e9afea6328e62851d627a4e73f2e12d0a8deae1cd375892004f3021883f8aec85932cd2834b091f568ced92b4774625b321db83b827f8
+  languageName: node
+  linkType: hard
+
 "dotenv@npm:^7.0.0":
   version: 7.0.0
   resolution: "dotenv@npm:7.0.0"
@@ -9204,7 +9203,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:^4.17.1, express@npm:^4.18.2":
+"express@npm:^4.17.1":
   version: 4.18.2
   resolution: "express@npm:4.18.2"
   dependencies:
@@ -16099,6 +16098,7 @@ __metadata:
     "@metamask/utils": ^3.4.1
     "@typescript-eslint/eslint-plugin": ^5.33.0
     "@typescript-eslint/parser": ^5.33.0
+    dotenv: ^16.0.3
     eslint: ^8.21.0
     eslint-config-prettier: ^8.1.0
     eslint-plugin-import: ^2.26.0
