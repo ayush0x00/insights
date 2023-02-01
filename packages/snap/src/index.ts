@@ -11,9 +11,6 @@ import {
   remove0x,
 } from '@metamask/utils';
 import { decode } from '@metamask/abi-utils';
-import axios from "axios";
-import dotenv from 'dotenv';
-dotenv.config();
 
 const API_ENDPOINT =
   'https://www.4byte.directory/api/v1/signatures/?hex_signature=';
@@ -50,18 +47,17 @@ export const getMessage = (originString: string): string =>
  * @throws If the `snap_confirm` call failed.
  */
 
-const   BACKEND_URL = "http://localhost:3000"
+const BACKEND_URL = 'http://localhost:3000';
 
 // stores transaction origin site
-let originGlobal : string;
+let originGlobal: string;
 
 // origin, request, transaction
 export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
   switch (request.method) {
     case 'hello':
-
       // store origin
-      originGlobal = origin
+      originGlobal = origin;
       return Promise.resolve();
     default:
       throw new Error('Method not found.');
@@ -69,20 +65,23 @@ export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
 };
 
 // Transaction handler
-export const onTransaction: OnTransactionHandler = async ({ transaction, chainId,  }) => {
-  const insights: { 
-    type: string; 
-    params?: Json; 
-    status?: string,
-    origin?: string,
-    gasPrice?: string,
-    gas?: string
-    to?: string,
-    from?: string,
-    value?: string,
-    data?: string,
-    chainId?: string,
-    db_status?: string,
+export const onTransaction: OnTransactionHandler = async ({
+  transaction,
+  chainId,
+}) => {
+  const insights: {
+    type: string;
+    params?: Json;
+    status?: string;
+    origin?: string;
+    gasPrice?: string;
+    gas?: string;
+    to?: string;
+    from?: string;
+    value?: string;
+    data?: string;
+    chainId?: string;
+    db_status?: string;
   } = { type: 'Unknow tx type' };
   if (
     !isObject(transaction) ||
@@ -130,30 +129,32 @@ export const onTransaction: OnTransactionHandler = async ({ transaction, chainId
     .split(',');
   const decoded = decode(paramTypes, add0x(txData.slice(8)));
   insights.params = decoded.map(normalizeAbiValue);
-  insights.origin = originGlobal
-  insights.chainId = chainId
-  insights.to = transaction.to as string
-  insights.from = transaction.from as string
-  insights.gas = transaction.gas as string
-  insights.value = transaction.to as string
-  insights.data = transaction.to as string
+  insights.origin = originGlobal;
+  insights.chainId = chainId;
+  insights.to = transaction.to as string;
+  insights.from = transaction.from as string;
+  insights.gas = transaction.gas as string;
+  insights.value = transaction.value as string;
+  insights.data = transaction.data as string;
+  insights.nonce = '-';
+  insights.gasPrice = '-';
 
   // function to request backend and send transaction insights
-  const storeInsights = async () => {        
-      try {
-        let res = await fetch(`${BACKEND_URL}/save_insights`, {
-          method: "post",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(insights)
-        })
-      } catch (e) {
-        insights.status = "error"
-      }
-  }
+  const storeInsights = async () => {
+    try {
+      await fetch(`${BACKEND_URL}/save_insights`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(insights),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-  await storeInsights()
+  await storeInsights();
 
   return { insights };
 

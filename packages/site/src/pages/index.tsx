@@ -14,7 +14,6 @@ import {
   SendHelloButton,
   Card,
 } from '../components';
-import axios from "axios"
 
 enum TransactionConstants {
   // The address of an arbitrary contract that will reject any transactions it receives
@@ -158,7 +157,6 @@ const Index = () => {
           },
         ],
       });
-      console.log(details)
     } catch (e) {
       console.error(e);
       dispatch({ type: MetamaskActions.SetError, payload: e });
