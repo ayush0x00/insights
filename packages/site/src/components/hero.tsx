@@ -1,23 +1,22 @@
 import React from 'react';
 import { Button } from 'antd';
-
 import { Carousel } from 'antd';
 
 const items = [
   {
     key: '1',
-    title: 'Web and mobile payment built for developers',
-    content: 'An vim odio ocurreret consetetur, justo constituto ex mea. Quidam facilisis vituperata pri ne. Id nostrud gubergren urbanitas sed, quo summo animal qualisque ut, cu nostro dissentias consectetuer mel. Ut admodum conceptam mei, cu eam tation fabulas abhorreant. His ex mandamus.',
+    title1: 'Doorway to ETH Based crypto.',
+    content: 'A snap is a program that we run in an isolated environment that can customize the wallet experience. For example, a snap can add new APIs to MetaMask, add support for different blockchain protocols, or modify existing functionality using internal APIs.',
   },
   {
     key: '2',
-    title: 'Work better together. Schedule meetings',
-    content: 'An vim odio ocurreret consetetur, justo constituto ex mea. Quidam facilisis vituperata pri ne. Id nostrud gubergren urbanitas sed, quo summo animal qualisque ut, cu nostro dissentias consectetuer mel. Ut admodum conceptam mei, cu eam tation fabulas abhorreant. His ex mandamus.',
+    title1: 'Learn and Work better together.',
+    content: 'MetaMask is the first wallet to offer extensibility. Snaps will boost the rate of innovation not just in Ethereum, but the entire Web3 ecosystem. Now Web3 developers can use the full power of MetaMask and create entirely new types of dapps',
   },
   {
     key: '3',
-    title: 'The best app to increase your productivity',
-    content: 'An vim odio ocurreret consetetur, justo constituto ex mea. Quidam facilisis vituperata pri ne. Id nostrud gubergren urbanitas sed, quo summo animal qualisque ut, cu nostro dissentias consectetuer mel. Ut admodum conceptam mei, cu eam tation fabulas abhorreant. His ex mandamus.',
+    title1: 'Increase your productivity.',
+    content: 'Another interesting highlight about the Metamask wallet is that it simplifies transactions. You can enter the recipient address and the amount you want to send alongside a transaction fee and click on “Send” to send transactions.',
   },
 ]
 
@@ -29,11 +28,12 @@ function AppHero() {
           return (
             <div key={item.key} className="container-fluid">
               <div className="content">
-                <h3>{item.title}</h3>
+                <h3>{item.title1}</h3>
+                
                 <p>{item.content}</p>
                 <div className="btnHolder">
-                  <Button type="primary" size="large">Learn More</Button>
-                  <Button size="large"><i className="fas fa-desktop"></i> Watch a Demo</Button>
+                  <Button type="primary" size="large">Connect</Button>
+                  {/* <Button size="large"><i className="fas fa-desktop"></i> Watch a Demo</Button> */}
                 </div>
               </div>
             </div>  
@@ -45,3 +45,4 @@ function AppHero() {
 }
 
 export default AppHero;
+

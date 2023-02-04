@@ -1,25 +1,24 @@
 import React from 'react';
-
 import { Row, Col } from 'antd';
 
 const items = [
   {
     key: '1',
-    icon: <i className="fas fa-chart-pie"></i>,
-    title: 'High Performance',
-    content: 'cu nostro dissentias consectetuer mel. Ut admodum conceptam mei, cu eam tation fabulas abhorreant. His ex mandamus.',
+    icon: <i className="fa-solid fa-book-open"></i>,
+    title: 'Open Source',
+    content: 'MetaMask software is open source. The wallet does not use two-factor authentication or multisignature access.',
   },
   {
     key: '2',
-    icon: <i className="fas fa-desktop"></i>,
-    title: 'Flat Design',
-    content: 'cu nostro dissentias consectetuer mel. Ut admodum conceptam mei, cu eam tation fabulas abhorreant. His ex mandamus.',
+    icon: <i className="fa-solid fa-file-contract"></i>,
+    title: 'Online Contract Analysis',
+    content: 'Interact with a smart contract calling a function, MetaMask will initiate the transaction by calling the eth_sendTransaction method',
   },
   {
     key: '3',
-    icon: <i className="fas fa-database"></i>,
+    icon: <i className="fa-solid fa-check"></i>,
     title: 'Simplified Workflow',
-    content: 'cu nostro dissentias consectetuer mel. Ut admodum conceptam mei, cu eam tation fabulas abhorreant. His ex mandamus.',
+    content: 'Each step in a workflow has a specific step before it and a specific step after it.',
   },
 ]
 
@@ -29,10 +28,10 @@ function AppAbout() {
       <div className="container-fluid">
         <div className="titleHolder">
           <h2>About Us</h2>
-          <p>dolor sit amet, consectetur adipisicing elit</p>
+          <p>Doorway to An ETH Based crypto-wallet </p>
         </div>
         <div className="contentHolder">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit necessitatibus officiis repudiandae est deserunt delectus dolorem iure porro distinctio fuga, nostrum doloremque. Facilis porro in laborum dolor amet ratione hic? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam aut a porro, adipisci quidem sint enim pariatur ducimus, saepe voluptatibus inventore commodi! Quis, explicabo molestias libero tenetur temporibus perspiciatis deserunt.</p>
+          <p> MetaMask focuses on connecting with dApps or smart contracts. You can click on the “Connect to Wallet” button or a similar option on the decentralized app platform you want to use. Once you have clicked on the button, you will discover a prompt asking you for permission to connect the dApp to your wallet. When you connect with a decentralized application, it can view your public addresses. However, they could not access your funds. Interestingly, dApps connect automatically to the Metamask wallet, thereby ensuring a simplified connection process.</p>
         </div>
         <Row gutter={[16, 16]}>   
           {items.map(item => {
@@ -55,3 +54,4 @@ function AppAbout() {
 }
 
 export default AppAbout;
+
