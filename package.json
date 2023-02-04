@@ -48,6 +48,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
+    "@metamask/abi-utils": "^1.1.1",
     "mdb-react-ui-kit": "^5.1.0",
     "react-router-dom": "^6.8.0"
   }
