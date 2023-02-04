@@ -8,7 +8,7 @@ import './components/css/App.css';
 import { Breadcrumb, Button } from 'antd';
 import { Layout, Menu, theme } from 'antd';
 import AppHeader from './components/Header';
-import AppFooter from './components/footer';
+import AppFooter from './components/Footer';
 import AppHome from './components/home';
 import { Content, Footer } from 'antd/es/layout/layout';
 

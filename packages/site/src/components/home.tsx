@@ -11,9 +11,9 @@ function AppHome() {
     <div className="main">
       <AppHero/>
       <AppAbout/>
-      <AppFeature/>
+      {/* <AppFeature/> */}
       <AppFaq/>
-      <AppContact/>
+      {/* <AppContact/> */}
     </div>
   );
 }

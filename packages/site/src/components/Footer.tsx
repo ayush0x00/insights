@@ -8,16 +8,13 @@ function AppFooter() {
       <div className="footer">
         <div className="logo">
           <i className="fas fa-bolt"></i>
-          <a href="http://google.com">Tech</a>
+          <a href="">Tech Meet'23</a>
         </div>
         <ul className="socials">
-          <li><a href="https://www.facebook.com/"><i className="fab fa-facebook-f"></i></a></li>
-          <li><a href="https://www.twitter.com/"><i className="fab fa-twitter"></i></a></li>
-          <li><a href="https://www.linkedin.com/"><i className="fab fa-linkedin-in"></i></a></li>
-          <li><a href="https://www.pinterest.com/"><i className="fab fa-pinterest-p"></i></a></li>
-          <li><a href="https://www.instagram.com/"><i className="fab fa-instagram"></i></a></li>
+          <li><a href="https://github.com/ayush0x00/insights"><i className="fa-brands fa-github"></i></a></li>
+         
         </ul>
-        <div className="copyright">Copyright &copy; 2020 Tech</div>
+        <div className="copyright">Copyright &copy; Team </div>
         <BackTop>
           <div className="goTop"><i className="fas fa-arrow-circle-up"></i></div>
         </BackTop>
@@ -27,3 +24,5 @@ function AppFooter() {
 }
 
 export default AppFooter;
+
+

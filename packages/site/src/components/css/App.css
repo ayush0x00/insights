@@ -2,11 +2,17 @@
 general 
 -------
 */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 body {
   font-size: 16px;
   line-height: 1.6;
   color: #333;
   overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
 }
 
 .container-fluid {
@@ -29,6 +35,7 @@ body {
 p {
   font-size: 16px;
   line-height: 1.6;
+  
 }
 
 .bgGray {
@@ -78,12 +85,19 @@ header
   justify-content: space-between;
   align-items: center;
   padding: 15px 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+
+
 }
 
 .header .logo {
   font-size: 22px;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 600;
+  font-family: 'Itim', cursive;
+
+
 }
 
 .header .logo .fas {
@@ -201,7 +215,8 @@ hero
 ---- 
 */
 .heroBlock {
-  /* background: url('assets/images/bg-hero.jpg') no-repeat; */
+  background-image: url("https://www.freepik.com/free-photo/beautiful-cryptocurrency-hologram-design_22126344.htm") no-repeat;
+
   background-position: 50% 100%;
   background-size: cover;
   height: 100vh;
@@ -230,13 +245,40 @@ hero
   flex-direction: column;
   justify-content: center;
   padding: 0 0 70px;
+  
 }
+
+
 
 .heroBlock h3 {
   font-size: 30px;
   line-height: 1.2;
   margin: 0 0 30px;
+  width: 21.5ch;
+	white-space: nowrap;
+	overflow: hidden;
+  font-family: 'Itim', cursive;
+	border-right: 4px solid #212121;
+	animation: cursor 1s step-start infinite, 
+    text 2.5s steps(40,end) alternate infinite;
 }
+
+
+@keyframes cursor {
+	0%, 100% { 
+    border-color: #212121; 
+  }
+}
+
+@keyframes text {
+	0% { 
+    width: 0; 
+  }
+	100% { 
+    width: 21.5ch; 
+  }
+}
+
 
 .heroBlock p {
   margin: 0 0 30px;
@@ -260,10 +302,17 @@ block
   border-bottom: 1px solid #d9d9d9;
 }
 
+
+
 /* 
 about
 ----- 
 */
+
+.aboutBlock .titleHolder{
+  font-family: 'Itim', cursive;
+  font-size: 100px;
+}
 .aboutBlock .contentHolder {
   text-align: center;
   margin: 0 0 50px;
@@ -277,6 +326,7 @@ about
 
 .aboutBlock .content {
   text-align: center;
+  
 }
 
 /* 
@@ -285,6 +335,8 @@ how it works
 */
 .worksBlock {
   /* background: url('assets/images/bg-works.jpg') no-repeat; */
+   background: url('https://www.freepik.com/free-photo/beautiful-cryptocurrency-hologram-design_22126344.htm#query=metamask&position=14&from_view=keyword') no-repeat;
+
   background-position: 50% 0;
   background-size: cover;
   background-attachment: fixed;
@@ -410,6 +462,7 @@ footer
 
 .footer .logo a {
   color: #fff;
+  font-family: 'Poppins', sans-serif;
 }
 
 .footer .socials {
@@ -435,6 +488,10 @@ footer
 
 .footer .goTop:hover {
   opacity: 0.7;
+}
+
+.footer .copyright{
+  font-family: 'Poppins', sans-serif;
 }
 
 .mobileVisible {

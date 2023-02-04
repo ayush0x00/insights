@@ -19,21 +19,21 @@ function AppHeader() {
       <div className="header">
         <div className="logo">
           <i className="fas fa-bolt"></i>
-          <a href="http://google.com">Metamask Snap</a>
+          <a href="" >Metamask Snap</a>
         </div>
         <div className="mobileHidden">
           <Anchor >
             <Link href="#heronpm i --save @fortawesome/fontawesome-svg-core
 " title="Home" />
             <Link href="#about" title="About" />
-            <Link href="#feature" title="Features" />
+            {/* <Link href="#feature" title="Features" /> */}
             <Link href="#faq" title="FAQ" />
-            <Link href="#contact" title="Contact" />
+            {/* <Link href="#contact" title="Contact" /> */}
           </Anchor>
         </div>
         <div className="mobileVisible">
           <Button type="primary" onClick={showDrawer}>
-            <i className="fas fa-bars">fejk</i>
+            <i className="fas fa-bars">Menu</i>
           </Button>
           <Drawer
             placement="right"
@@ -44,9 +44,9 @@ function AppHeader() {
             {/* <Anchor > */}
               <Link href="#hero" title="Home" />
               <Link href="#about" title="About" />
-              <Link href="#feature" title="Features" />
+              {/* <Link href="#feature" title="Features" /> */}
               <Link href="#faq" title="FAQ" />
-              <Link href="#contact" title="Contact" />
+              {/* <Link href="#contact" title="Contact" /> */}
             {/* </Anchor> */}
           </Drawer>
         </div>
@@ -56,3 +56,5 @@ function AppHeader() {
 }
 
 export default AppHeader;
+
+
