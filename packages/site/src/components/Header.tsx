@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { BrowserRouter, Route, Link } from "react-router-dom";
 import { Anchor, Drawer, Button } from 'antd';
 const { Link } = Anchor;
 
@@ -44,8 +45,10 @@ function AppHeader() {
             {/* <Anchor > */}
               <Link href="#hero" title="Home" />
               <Link href="#about" title="About" />
+
               {/* <Link href="#feature" title="Features" /> */}
               <Link href="#faq" title="FAQ" />
+              <Link href="./insights" title="Insights"/>
               {/* <Link href="#contact" title="Contact" /> */}
             {/* </Anchor> */}
           </Drawer>

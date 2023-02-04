@@ -215,7 +215,7 @@ hero
 ---- 
 */
 .heroBlock {
-  background-image: url("https://www.freepik.com/free-photo/beautiful-cryptocurrency-hologram-design_22126344.htm") no-repeat;
+  background-image: "url('https://www.freepik.com/free-photo/beautiful-cryptocurrency-hologram-design_22126344.htm')";
 
   background-position: 50% 100%;
   background-size: cover;

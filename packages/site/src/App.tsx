@@ -1,6 +1,8 @@
 import { FunctionComponent, ReactNode, useContext } from 'react';
 import styled from 'styled-components';
 // import { Footer, Header } from './components';
+import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { GlobalStyle } from './config/theme';
 import { ToggleThemeContext } from './Root';
@@ -10,6 +12,7 @@ import { Layout, Menu, theme } from 'antd';
 import AppHeader from './components/Header';
 import AppFooter from './components/Footer';
 import AppHome from './components/home';
+import Insights from './components/Insights';
 import { Content, Footer } from 'antd/es/layout/layout';
 
 const { Header } = Layout;
@@ -33,12 +36,21 @@ export const App: FunctionComponent<AppProps> = ({ children }) => {
         <AppHeader />
       </Header>
       <Content>
-        <AppHome/>
+        
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<AppHome />} />
+          </Routes>
+          <Routes>
+            <Route path="/insights" element={<Insights />} />
+          </Routes>
+        </BrowserRouter>
       </Content>
       <Footer>
         <AppFooter/>  
       </Footer>
     </Layout>
+    
     // <>
     //   {/* <GlobalStyle /> */}
     //   {/* <Wrapper> */}
