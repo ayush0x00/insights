@@ -244,11 +244,25 @@ hero
   display: flex;
   flex-direction: column;
   /* background-color: white ; */
-  padding: 30vh 5vw;
+  /* padding: 30vh 5vw; */
   margin: 0px;
   justify-content: center;
   /* padding: 0 0 70px; */
-  
+}
+@media only screen and (min-width: 1200px) {
+  .heroBlock .content {
+    padding: 30vh 5vw;
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 1200px) {
+  .heroBlock .content {
+    padding: 20vh 5vw;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .heroBlock .content {
+    padding: 15vh 5vw;
+  }
 }
 
 

@@ -2220,8 +2220,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
-=======
 "@metamask/abi-utils@npm:^1.1.1":
   version: 1.1.1
   resolution: "@metamask/abi-utils@npm:1.1.1"
@@ -2232,7 +2230,6 @@ __metadata:
   languageName: node
   linkType: hard
 
->>>>>>> bc9a5cbae75485a7b8613470446ddec44e0d9b93
 "@metamask/auto-changelog@npm:^2.6.0":
   version: 2.6.1
   resolution: "@metamask/auto-changelog@npm:2.6.1"
@@ -2415,11 +2412,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
-"@metamask/utils@npm:^3.1.0":
-=======
 "@metamask/utils@npm:^3.1.0, @metamask/utils@npm:^3.4.1":
->>>>>>> bc9a5cbae75485a7b8613470446ddec44e0d9b93
   version: 3.4.1
   resolution: "@metamask/utils@npm:3.4.1"
   dependencies:
@@ -10349,10 +10342,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "insights@workspace:."
   dependencies:
-<<<<<<< HEAD
-=======
     "@metamask/abi-utils": ^1.1.1
->>>>>>> bc9a5cbae75485a7b8613470446ddec44e0d9b93
     "@metamask/eslint-config": ^10.0.0
     "@metamask/eslint-config-jest": ^10.0.0
     "@metamask/eslint-config-nodejs": ^10.0.0
