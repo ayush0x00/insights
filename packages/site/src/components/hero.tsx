@@ -33,6 +33,7 @@ function AppHero() {
                 <p>{item.content}</p>
                 <div className="btnHolder">
                   <Button type="primary" size="large">Connect</Button>
+                  <Button type="primary" size="large" href="/insights" target="_blank">View Transaction</Button>
                   {/* <Button size="large"><i className="fas fa-desktop"></i> Watch a Demo</Button> */}
                 </div>
               </div>
