@@ -20,7 +20,7 @@ function AppHeader() {
       <div className="header">
         <div className="logo">
           <i className="fas fa-bolt"></i>
-          <a href="" >Metamask Snap</a>
+          <a href="/" >Metamask Snap</a>
         </div>
         <div className="mobileHidden">
           <Anchor >

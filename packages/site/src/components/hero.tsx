@@ -1,6 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Button } from 'antd';
 import { Carousel } from 'antd';
+import { MetamaskActions, MetaMaskContext } from '../hooks';
+import {
+  connectSnap,
+  getSnap,
+  sendHello,
+  shouldDisplayReconnectButton,
+} from '../utils';
 
 const items = [
   {
@@ -20,23 +27,86 @@ const items = [
   },
 ]
 
+enum TransactionConstants {
+  // The address of an arbitrary contract that will reject any transactions it receives
+  Address = '0x08A8fDBddc160A7d5b957256b903dCAb1aE512C5',
+  // Some example encoded contract transaction data
+  UpdateWithdrawalAccount = '0x83ade3dc00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000200000000000000000000000047170ceae335a9db7e96b72de630389669b334710000000000000000000000006b175474e89094c44da98b954eedeac495271d0f',
+  UpdateMigrationMode = '0x2e26065e0000000000000000000000000000000000000000000000000000000000000000',
+  UpdateCap = '0x85b2c14a00000000000000000000000047170ceae335a9db7e96b72de630389669b334710000000000000000000000000000000000000000000000000de0b6b3a7640000',
+}
+
+
 function AppHero() {
+
+  const [state, dispatch] = useContext(MetaMaskContext);
+
+  const handleConnectClick = async () => {
+    try {
+      await connectSnap();
+      const installedSnap = await getSnap();
+
+      dispatch({
+        type: MetamaskActions.SetInstalled,
+        payload: installedSnap,
+      });
+    } catch (e) {
+      console.error(e);
+      dispatch({ type: MetamaskActions.SetError, payload: e });
+    }
+  };
+
+  const handleSendHelloClick = async () => {
+
+    // Send snap RPC request to store "origin" field
+    try {
+      await sendHello();
+    } catch(e){
+      console.log(e)
+      dispatch({ type: MetamaskActions.SetError, payload: e });
+    }
+
+    // perform transaction 
+    try {
+      const [from] = (await window.ethereum.request({
+        method: 'eth_requestAccounts',
+      })) as string[];
+
+      if (!from) {
+        throw new Error('No accounts found');
+      }
+
+      const details = await window.ethereum.request({
+        method: 'eth_sendTransaction',
+        params: [
+          {
+            from,
+            to: TransactionConstants.Address,
+            value: "0x0",
+            data: TransactionConstants.UpdateWithdrawalAccount,
+          },
+        ],
+      });
+    } catch (e) {
+      console.error(e);
+      dispatch({ type: MetamaskActions.SetError, payload: e });
+    }
+  };
+
   return (
     <div id="hero" className="heroBlock ">
       <Carousel>
         {items.map(item => {
           return (
-            <div key={item.key} className="container-fluid ">
-              <div className="content ">
-                <div className="hero-content">
-                  <h3>{item.title1}</h3>
-
-                  <p>{item.content}</p>
-                  <div className="btnHolder">
-                    <Button type="primary" size="large">Connect</Button>
-                    <Button type="primary" size="large" href="/insights" target="_blank">View Transaction</Button>
-                    {/* <Button size="large"><i className="fas fa-desktop"></i> Watch a Demo</Button> */}
-                  </div>
+            <div key={item.key} className="container-fluid">
+              <div className="content">
+                <h3>{item.title1}</h3>
+                
+                <p>{item.content}</p>
+                <div className="btnHolder">
+                  <Button type="primary" size="large" onClick={handleConnectClick}>Connect</Button>
+                  <Button type="primary" size="large" href="/insights" target="_blank">View Transaction</Button>
+                  {/* <Button size="large"><i className="fas fa-desktop"></i> Watch a Demo</Button> */}
                 </div>
               </div>
             </div>
