@@ -202,35 +202,48 @@ const Insights = () => {
 					<p>Doorway to An ETH Based crypto-wallet </p>
 				</div>
 				<div>
-					<Button type="primary" size="large" href="#" target="_blank">Demo Transaction</Button>
-					<Button type="primary" size="large" target="_blank" onClick={displayInsights}>Show Transactions</Button>
+					<Button type="primary" size="large" href="#" target="_blank" className="bttn">Demo Transaction</Button>
+					{/* <Button type="primary" size="large" target="_blank" onClick={displayInsights}>Show Transactions</Button> */}
 				</div>
 				<MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
 					<MDBCardBody>
-						<MDBCardTitle>{data.origin}</MDBCardTitle>
+						
+						<MDBCardTitle className="CardMainHeading">{data.origin}</MDBCardTitle>
+						<br />
 						<MDBRow>
 							<MDBCol size='md'>
-								{data.from}
+								<p className="CardMainHeading">From:</p> {data.from}
+								{/* <MDBRow></MDBRow> */}
 							</MDBCol>
+							{/* <MDBCol size='md'>
+								{data.from}
+							</MDBCol> */}
 							<MDBCol size='md'>
+							<p className="CardMainHeading">Value:</p>
 								{data.value}
 							</MDBCol>
 							<MDBCol size='md'>
+							<p className="CardMainHeading">To:</p>
 								{data.to}
 								({data.addressType})
 							</MDBCol>
 						</MDBRow>
+						<br></br>
 						<div id="hiddenData">
 							<MDBRow>
 								<MDBCol size='md'>
+								<p className="CardMainHeading">ChainId:</p>
 									{data.chainId}
-									<br></br>
+									<br></br><br></br>
+									<p className="CardMainHeading">Gas:</p>
 									{data.gas}
 								</MDBCol>
 								<MDBCol size='md'>
+								<p className="CardMainHeading">ML Data:</p>
 									{data.mlData.vulnarablities}
 								</MDBCol>
 								<MDBCol size='md'>
+								<p className="CardMainHeading">To:</p>
 									{data.to}
 								</MDBCol>
 							</MDBRow>
