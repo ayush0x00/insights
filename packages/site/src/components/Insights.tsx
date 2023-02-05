@@ -213,123 +213,91 @@ const Insights = () => {
 					<Button type="primary" size="large" href="#" target="_blank" className="bttn">Demo Transaction</Button>
 					{/* <Button type="primary" size="large" target="_blank" onClick={displayInsights}>Show Transactions</Button> */}
 				</div>
-				{/* <MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
-					<MDBCardBody>
-						<MDBCardTitle>{data.origin}</MDBCardTitle>
-						<MDBRow>
-							<MDBCol size='md'>
-								{data.from}
-							</MDBCol>
-							<MDBCol size='md'>
-								{data.value}
-							</MDBCol>
-							<MDBCol size='md'>
-								{data.to}
-								({data.addressType})
-							</MDBCol>
-						</MDBRow>
-						{showResults ?
-							<div id="hiddenData">
-								<MDBRow>
-									<MDBCol size='md'>
-										{data.chainId}
-										<br></br>
-										{data.gas}
-									</MDBCol>
-									<MDBCol size='md'>
-										{data.mlData.vulnarablities}
-									</MDBCol>
-									<MDBCol size='md'>
-										{data.to}
-									</MDBCol>
-								</MDBRow>
-							</div> : null
-						}
-						<MDBBtn href='#' onClick={onClick}>More Details</MDBBtn>
-					</MDBCardBody>
-				</MDBCard> */}
 				<MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
-					<MDBCardBody>
-						
-						<MDBCardTitle className="CardMainHeading">{data.origin}</MDBCardTitle>
+                    <MDBCardBody>
+                       
+                        <MDBCardTitle className="CardMainHeading">{data.origin}</MDBCardTitle>
+                        <br />
+                        <MDBRow>
+                            <MDBCol size='md'>
+                                <p className="CardMainHeading">From:</p> {data.from}
+                                {/* <MDBRow></MDBRow> */}
+                            </MDBCol>
+                            {/* <MDBCol size='md'>
+                                {data.from}
+                            </MDBCol> */}
+                            <MDBCol size='md'>
+                            <p className="CardMainHeading">Value:</p>
+                                {data.value}
+                            </MDBCol>
+                            <MDBCol size='md'>
+                            <p className="CardMainHeading">To:</p>
+                                {data.to}
+                                ({data.addressType})
+                            </MDBCol>
+                        </MDBRow>
 						<br />
-						<MDBRow>
-							<MDBCol size='md'>
-								<p className="CardMainHeading">From:</p> {data.from}
-								{/* <MDBRow></MDBRow> */}
-							</MDBCol>
-							{/* <MDBCol size='md'>
-								{data.from}
-							</MDBCol> */}
-							<MDBCol size='md'>
-							<p className="CardMainHeading">Value:</p>
-								{data.value}
-							</MDBCol>
-							<MDBCol size='md'>
-							<p className="CardMainHeading">To:</p>
-								{data.to}
-								({data.addressType})
-							</MDBCol>
-						</MDBRow>
-						<div id="hiddenData">
-							<MDBRow>
-								<MDBCol size='md'>
-									{data.chainId}
-									<br></br>
-									{data.gas}
-								</MDBCol>
-								<MDBCol size='md'>
-									{data.mlData.vulnarablities}
-								</MDBCol>
-								<MDBCol size='md'>
-									{data.to}
-								</MDBCol>
-							</MDBRow>
-						</div>
-						<MDBBtn href='#' id="toggle">More Details</MDBBtn>
-					</MDBCardBody>
-				</MDBCard>
-				<MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
-					<MDBCardBody>
-						<MDBCardTitle>{data.origin}</MDBCardTitle>
-						<MDBRow>
-							<MDBCol size='md'>
-								{data.from}
-							</MDBCol>
-							<MDBCol size='md'>
-								{data.value}
-							</MDBCol>
-							<MDBCol size='md'>
-								{data.to}
-								({data.addressType})
-							</MDBCol>
-						</MDBRow>
-						{showResults2 ?
-							<div id="hiddenData">
-								<MDBRow>
-									<MDBCol size='md'>
-										{data.chainId}
-										<br></br>
-										{data.gas}
-									</MDBCol>
-									<MDBCol size='md'>
-										{data.mlData.vulnarablities}
-									</MDBCol>
-									<MDBCol size='md'>
-										{data.to}
-									</MDBCol>
-								</MDBRow>
-							</div> : null
-						}
-						{showResults2 ?
-							<MDBBtn href='#' onClick={onClick2}>Less Details</MDBBtn> :
-							<MDBBtn href='#' onClick={onClick2}>More Details</MDBBtn>
-						}
-					</MDBCardBody>
-				</MDBCard>
-			</div>
-		</div>
-	)
+                        <div id="hiddenData">
+                            <MDBRow>
+                                <MDBCol size='md'>
+
+								<p className="CardMainHeading">ChainId:</p> {data.chainId}
+                                    <br></br><br />
+									<p className="CardMainHeading">Gas:</p> {data.gas}
+                                </MDBCol>
+                                <MDBCol size='md'>
+								<p className="CardMainHeading">ML Data:</p>    {data.mlData.vulnarablities}
+                                </MDBCol>
+                                <MDBCol size='md'>
+								<p className="CardMainHeading">To:</p>   {data.to}
+                                </MDBCol>
+                            </MDBRow>
+                        </div>
+                        <MDBBtn href='#' id="toggle">More Details</MDBBtn>
+                    </MDBCardBody>
+                </MDBCard>
+                <MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
+                    <MDBCardBody>
+                        <MDBCardTitle>{data.origin}</MDBCardTitle>
+                        <MDBRow>
+                            <MDBCol size='md'>
+                                {data.from}
+                            </MDBCol>
+                            <MDBCol size='md'>
+                                {data.value}
+                            </MDBCol>
+                            <MDBCol size='md'>
+                                {data.to}
+                                ({data.addressType})
+                            </MDBCol>
+                        </MDBRow>
+                        {showResults2 ?
+                            <div id="hiddenData">
+                                <MDBRow>
+                                    <MDBCol size='md'>
+                                        {data.chainId}
+                                        <br></br>
+                                        {data.gas}
+                                    </MDBCol>
+                                    <MDBCol size='md'>
+                                        {data.mlData.vulnarablities}
+                                    </MDBCol>
+                                    <MDBCol size='md'>
+                                        {data.to}
+                                    </MDBCol>
+                                </MDBRow>
+                            </div> : null
+                        }
+                        {showResults2 ?
+                            <MDBBtn href='#' onClick={onClick2}>Less Details</MDBBtn> :
+                            <MDBBtn href='#' onClick={onClick2}>More Details</MDBBtn>
+                        }
+                    </MDBCardBody>
+                </MDBCard>
+            </div>
+        </div>
+    )
 }
+
 
 export default Insights
