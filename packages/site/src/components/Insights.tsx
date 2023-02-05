@@ -57,18 +57,26 @@ const data = {
 	}
 }
 
-// const targetDiv = document.getElementById("hiddenData");
-// const btn = document.getElementById("toggle");
-
 const Insights = () => {
 
-	// btn.onclick = () => {
-	// 	if (targetDiv.style.display !== "none") {
-	// 		targetDiv.style.display = "none";
-	// 	} else {
-	// 		targetDiv.style.display = "block";
-	// 	}
-	// };
+	const [showResults1, setShowResults1] = React.useState(false)
+	const [showResults2, setShowResults2] = React.useState(false)
+	const onClick1 = () => {
+		if (showResults1 == false) {
+			setShowResults1(true)
+		}
+		else {
+			setShowResults1(false)
+		}
+	}
+	const onClick2 = () => {
+		if (showResults2 == false) {
+			setShowResults2(true)
+		}
+		else {
+			setShowResults2(false)
+		}
+	}
 
 	React.useEffect(() => {
 		loadInsights()
@@ -192,7 +200,7 @@ const Insights = () => {
 	const displayInsights = () => {
 		console.log(insights)
 	}
-	
+
 
 	return (
 		<div id="insights" className="block insightBlock">
@@ -205,6 +213,41 @@ const Insights = () => {
 					<Button type="primary" size="large" href="#" target="_blank" className="bttn">Demo Transaction</Button>
 					{/* <Button type="primary" size="large" target="_blank" onClick={displayInsights}>Show Transactions</Button> */}
 				</div>
+				{/* <MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
+					<MDBCardBody>
+						<MDBCardTitle>{data.origin}</MDBCardTitle>
+						<MDBRow>
+							<MDBCol size='md'>
+								{data.from}
+							</MDBCol>
+							<MDBCol size='md'>
+								{data.value}
+							</MDBCol>
+							<MDBCol size='md'>
+								{data.to}
+								({data.addressType})
+							</MDBCol>
+						</MDBRow>
+						{showResults ?
+							<div id="hiddenData">
+								<MDBRow>
+									<MDBCol size='md'>
+										{data.chainId}
+										<br></br>
+										{data.gas}
+									</MDBCol>
+									<MDBCol size='md'>
+										{data.mlData.vulnarablities}
+									</MDBCol>
+									<MDBCol size='md'>
+										{data.to}
+									</MDBCol>
+								</MDBRow>
+							</div> : null
+						}
+						<MDBBtn href='#' onClick={onClick}>More Details</MDBBtn>
+					</MDBCardBody>
+				</MDBCard> */}
 				<MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
 					<MDBCardBody>
 						
@@ -228,22 +271,17 @@ const Insights = () => {
 								({data.addressType})
 							</MDBCol>
 						</MDBRow>
-						<br></br>
 						<div id="hiddenData">
 							<MDBRow>
 								<MDBCol size='md'>
-								<p className="CardMainHeading">ChainId:</p>
 									{data.chainId}
-									<br></br><br></br>
-									<p className="CardMainHeading">Gas:</p>
+									<br></br>
 									{data.gas}
 								</MDBCol>
 								<MDBCol size='md'>
-								<p className="CardMainHeading">ML Data:</p>
 									{data.mlData.vulnarablities}
 								</MDBCol>
 								<MDBCol size='md'>
-								<p className="CardMainHeading">To:</p>
 									{data.to}
 								</MDBCol>
 							</MDBRow>
@@ -266,22 +304,27 @@ const Insights = () => {
 								({data.addressType})
 							</MDBCol>
 						</MDBRow>
-						<div>
-							<MDBRow>
-								<MDBCol size='md'>
-									{data.chainId}
-									<br></br>
-									{data.gas}
-								</MDBCol>
-								<MDBCol size='md'>
-									{data.mlData.vulnarablities}
-								</MDBCol>
-								<MDBCol size='md'>
-									{data.to}
-								</MDBCol>
-							</MDBRow>
-						</div>
-						<MDBBtn href='#'>More Details</MDBBtn>
+						{showResults2 ?
+							<div id="hiddenData">
+								<MDBRow>
+									<MDBCol size='md'>
+										{data.chainId}
+										<br></br>
+										{data.gas}
+									</MDBCol>
+									<MDBCol size='md'>
+										{data.mlData.vulnarablities}
+									</MDBCol>
+									<MDBCol size='md'>
+										{data.to}
+									</MDBCol>
+								</MDBRow>
+							</div> : null
+						}
+						{showResults2 ?
+							<MDBBtn href='#' onClick={onClick2}>Less Details</MDBBtn> :
+							<MDBBtn href='#' onClick={onClick2}>More Details</MDBBtn>
+						}
 					</MDBCardBody>
 				</MDBCard>
 			</div>
