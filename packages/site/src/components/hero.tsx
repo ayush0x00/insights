@@ -106,7 +106,7 @@ function AppHero() {
                 <div className="btnHolder">
                   
                   <Button type="primary" size="large" onClick={handleConnectClick}>Connect</Button>
-                  <Button type="primary" size="large" href="/insights" target="_blank">View Transaction</Button>
+                  <Button type="primary" size="large" href="/insights">View Transaction</Button>
                   {/* <Button size="large"><i className="fas fa-desktop"></i> Watch a Demo</Button> */}
                 </div>
               </div>

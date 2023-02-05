@@ -331,6 +331,13 @@ block
   border-bottom: 1px solid #d9d9d9;
 }
 
+/* button */
+.buttonAlign{
+  text-align: center;
+  justify-content: center;
+  margin-left: 500px;
+}
+
 /* 
 Insights
 ----- 
@@ -350,6 +357,19 @@ Insights
   border: 2px solid black;
   margin: 2rem;
   /* border: 5px solid blue; */
+}
+.bttn{
+  margin-left: 500px;
+}
+.insightsButtonCSS{
+  color: #1890ff ;
+}
+
+.CardMainHeading{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-top: -10px;
+  margin-bottom: -5px;
 }
 
 /* 
