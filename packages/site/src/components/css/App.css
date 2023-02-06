@@ -5,7 +5,6 @@ general
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Itim&family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 body {
   font-size: 16px;
@@ -50,13 +49,14 @@ title holder
   text-align: center;
   position: relative;
   padding: 0 0 20px;
+  /* color: #604b2b; */
   margin: 0 0 40px;
 }
 
 .titleHolder:after {
   transform: translateX(-50%);
   content: '';
-  background: #1890ff;
+  background: #604b2b;
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -79,7 +79,10 @@ header
   right: 0;
   z-index: 999;
 }
-
+.navbar{
+  background-color: #fbedda;
+  height: 12vh;
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -87,8 +90,6 @@ header
   padding: 15px 0;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-
-
 }
 
 .header .logo {
@@ -99,9 +100,8 @@ header
 
 
 }
-
 .header .logo .fas {
-  color: #1890ff;
+  color: black;
   margin: 0 5px 0 0;
   font-size: 28px;
 }
@@ -128,36 +128,6 @@ header
   position: relative;
 }
 
-.header .ant-anchor-link:before,
-.header .ant-anchor-link:after {
-  content: '';
-  background: #1890ff;
-  width: 1px;
-  position: absolute;
-  top: 2px;
-  bottom: 2px;
-  /* left: 30%; */
-  opacity: 0;
-  transition: all 0.3s linear;
-}
-
-.header .ant-anchor-link:after {
-  left: auto;
-  right: 30%;
-}
-
-.header .ant-anchor-link.ant-anchor-link-active:before,
-.header .ant-anchor-link:hover:before {
-  left: 5%;
-  opacity: 1;
-}
-
-.header .ant-anchor-link.ant-anchor-link-active:after,
-.header .ant-anchor-link:hover:after {
-  right: 5%;
-  opacity: 1;
-}
-
 /* ant menu */
 .header .ant-menu {
   border: 0;
@@ -169,46 +139,23 @@ header
   color: #333;
 }
 
-.header .ant-menu li.ant-menu-item:before,
-.header .ant-menu li.ant-menu-item:after {
-  content: '';
-  background: #1890ff;
-  width: 1px;
-  position: absolute;
-  top: 2px;
-  bottom: 2px;
-  left: 30%;
-  opacity: 0;
-  transition: all 0.3s linear;
-}
-
-.header .ant-menu li.ant-menu-item:after {
-  left: auto;
-  right: 30%;
-}
-
 .header .ant-menu li.ant-menu-item,
 .header .ant-menu li.ant-menu-item-selected {
   border: 0 !important;
+  /* color: #000 !important; */
 }
 
 .header .ant-menu li.ant-menu-item-selected,
 .header .ant-menu li.ant-menu-item:hover {
-  color: #1890ff;
+  color: black;
+  background: none;
+}
+.header .ant-menu li.ant-menu-item-selected,
+.header .ant-menu li.ant-menu-item:active {
+  color: black;
   background: none;
 }
 
-.header .ant-menu li.ant-menu-item-selected:before,
-.header .ant-menu li.ant-menu-item:hover:before {
-  left: 5%;
-  opacity: 1;
-}
-
-.header .ant-menu li.ant-menu-item-selected:after,
-.header .ant-menu li.ant-menu-item:hover:after {
-  right: 5%;
-  opacity: 1;
-}
 
 /* 
 hero
@@ -236,7 +183,7 @@ hero
 }
 
 .heroBlock .slick-dots li.slick-active button {
-  background: #1890ff !important;
+  background: black !important;
 }
 
 .heroBlock .content {
@@ -259,9 +206,14 @@ hero
     padding: 20vh 5vw;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) and (min-width: 400px) {
   .heroBlock .content {
     padding: 15vh 5vw;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .heroBlock .content{
+    padding: 5vh;
   }
 }
 
@@ -279,7 +231,9 @@ hero
 	animation: cursor 1s step-start infinite, 
     text 2.5s steps(40,end) alternate ;
 }
-
+.hero-btn{
+  margin: 10px 0px;
+}
 .hero-content{
   text-align: center;
   background-color:  rgba(4, 4, 5, 0.317) ;
@@ -349,7 +303,6 @@ Insights
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  /* background-position: 50% 100%; */
   background-size: cover;
   box-shadow: 0px 0px 0px 4000px rgba(45, 47, 48, 0.5) inset;
   padding-top: 15vh;
@@ -360,23 +313,37 @@ Insights
   font-size: 100px;
 }
 .insightBlock .contentHolder {
+  font-family: 'Poppins', sans-serif;
   text-align: center;
 }
 .insight-card {
-  /* color: #1890ff; */
+  margin: 1rem;
   border: 2px solid black;
-  margin: 2rem;
-  /* border: 5px solid blue; */
+  background-color: #fbedda;
+  border-radius: 20px;
+}
+.card-body{
+  background-color: #fbedda;
 }
 .bttn{
-  margin-left: 500px;
+  background-color: #c3995a;
+  color: black;
+  padding: 5px 20px;
+  border: 2px solid black ;
+  border-radius: 10px;
 }
+.bttn:hover{
+  background-color: #000;
+  color: #c3995a;
+  border: 2px solid #c3995a;
+}
+
 .insightsButtonCSS{
-  color: #1890ff ;
+  color: black ;
 }
 
 .CardMainHeading{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Itim', cursive;
   font-weight: 600;
   margin-top: -10px;
   margin-bottom: -5px;
@@ -398,7 +365,7 @@ about
 
 .aboutBlock .icon {
   font-size: 40px;
-  color: #1890ff;
+  color: black;
   margin: 0 0 10px;
 }
 
@@ -520,12 +487,12 @@ footer
 ------
 */
 .ant-layout-footer {
-  background: #111 !important;
-  color: #fff !important;
+  background:  #604b2b !important;
+  color: black !important;
   padding: 60px 0 !important;
   text-align: center;
+  margin : 0 0 0 0 !important;
 }
-
 .footer .logo {
   font-size: 22px;
   text-transform: uppercase;
@@ -533,13 +500,13 @@ footer
 }
 
 .footer .fas {
-  color: #1890ff;
+  color: black;
   font-size: 28px;
   margin: 0 5px 0 0;
 }
 
 .footer .logo a {
-  color: #fff;
+  color: black;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -561,7 +528,7 @@ footer
 }
 
 .footer .socials a:hover {
-  color: #1890ff;
+  color: black;
 }
 
 .footer .goTop:hover {

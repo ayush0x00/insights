@@ -16,41 +16,38 @@ function AppHeader() {
   };
 
   return (
-    <div className="container-fluid">
+    // <div className='navbar'>
+    <div style={{ backgroundColor: "#fbedda", padding: "0 10vw", border: "1px solid black" }}>
       <div className="header">
         <div className="logo">
           <i className="fas fa-bolt"></i>
-          <a href="/" >Metamask Snap</a>
+          <a href="/#hero" >Metamask Snap</a>
         </div>
+
         <div className="mobileHidden">
           <Anchor >
-            <Link href="#heronpm i --save @fortawesome/fontawesome-svg-core
-" title="Home" />
-            <Link href="#about" title="About" />
-            {/* <Link href="#feature" title="Features" /> */}
-            <Link href="#faq" title="FAQ" />
-            {/* <Link href="#contact" title="Contact" /> */}
+            <Link href="/#hero" title="Home" />
+            <Link href="/#about" title="About" />
+            <Link href="/insights" title="Insights" />
+            <Link href="/#faq" title="FAQ" />
           </Anchor>
         </div>
+
         <div className="mobileVisible">
-          <Button type="primary" onClick={showDrawer}>
+          <button onClick={showDrawer} className="bttn">
             <i className="fas fa-bars">Menu</i>
-          </Button>
+          </button>
           <Drawer
             placement="right"
             closable={false}
             onClose={onClose}
             visible={visible}
           >
-            {/* <Anchor > */}
-              <Link href="#hero" title="Home" />
-              <Link href="#about" title="About" />
+            <Link href="/#hero" title="Home" />
+            <Link href="/#about" title="About" />
 
-              {/* <Link href="#feature" title="Features" /> */}
-              <Link href="#faq" title="FAQ" />
-              <Link href="./insights" title="Insights"/>
-              {/* <Link href="#contact" title="Contact" /> */}
-            {/* </Anchor> */}
+            <Link href="/#faq" title="FAQ" />
+            <Link href="/insights" title="Insights" />
           </Drawer>
         </div>
       </div>

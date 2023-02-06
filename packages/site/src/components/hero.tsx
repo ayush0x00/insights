@@ -1,7 +1,9 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { Button } from 'antd';
 import { Carousel } from 'antd';
 import { MetamaskActions, MetaMaskContext } from '../hooks';
+import { MDBCol, MDBRow } from 'mdb-react-ui-kit';
+
 import {
   connectSnap,
   getSnap,
@@ -17,12 +19,12 @@ const items = [
   },
   {
     key: '2',
-    title1: 'Doorway to ETH Based crypto.',
+    title1: 'Learn and work better together.',
     content: 'MetaMask is the first wallet to offer extensibility. Snaps will boost the rate of innovation not just in Ethereum, but the entire Web3 ecosystem. Now Web3 developers can use the full power of MetaMask and create entirely new types of dapps',
   },
   {
     key: '3',
-    title1: 'Doorway to ETH Based crypto.',
+    title1: 'Increase your skills and productivity .',
     content: 'Another interesting highlight about the Metamask wallet is that it simplifies transactions. You can enter the recipient address and the amount you want to send alongside a transaction fee and click on “Send” to send transactions.',
   },
 ]
@@ -61,7 +63,7 @@ function AppHero() {
     // Send snap RPC request to store "origin" field
     try {
       await sendHello();
-    } catch(e){
+    } catch (e) {
       console.log(e)
       dispatch({ type: MetamaskActions.SetError, payload: e });
     }
@@ -101,15 +103,17 @@ function AppHero() {
             <div key={item.key} className="container-fluid ">
               <div className="content">
                 <div className='hero-content'>
-                <h3>{item.title1}</h3>                
-                <p>{item.content}</p>
-                <div className="btnHolder">
-                  
-                  <Button type="primary" size="large" onClick={handleConnectClick}>Connect</Button>
-                  <Button type="primary" size="large" href="/insights">View Transaction</Button>
-                  {/* <Button size="large"><i className="fas fa-desktop"></i> Watch a Demo</Button> */}
+                  <h3>{item.title1}</h3>
+                  <p>{item.content}</p>
+                  <div className="btnHolder">
+                    <MDBRow>
+                      <MDBCol size='md'>
+                        <button  className='bttn hero-btn' onClick={handleConnectClick}>Connect</button>
+                        <a href='/insights'><button  className="bttn hero-btn" >View Transaction</button></a>
+                      </MDBCol>
+                    </MDBRow>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
           );
@@ -118,6 +122,5 @@ function AppHero() {
     </div>
   );
 }
-
 export default AppHero;
 

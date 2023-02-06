@@ -3,8 +3,6 @@ import styled from 'styled-components';
 // import { Footer, Header } from './components';
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import { GlobalStyle } from './config/theme';
 import { ToggleThemeContext } from './Root';
 import './components/css/App.css';
 import { Breadcrumb, Button } from 'antd';
@@ -36,7 +34,7 @@ export const App: FunctionComponent<AppProps> = ({ children }) => {
         <AppHeader />
       </Header>
       <Content>
-        
+
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<AppHome />} />
@@ -47,10 +45,10 @@ export const App: FunctionComponent<AppProps> = ({ children }) => {
         </BrowserRouter>
       </Content>
       <Footer>
-        <AppFooter/>  
+        <AppFooter />
       </Footer>
     </Layout>
-    
+
     // <>
     //   {/* <GlobalStyle /> */}
     //   {/* <Wrapper> */}

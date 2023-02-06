@@ -58,8 +58,8 @@ const Insights = () => {
 		}
 
 		return (
-			<div className="single-history" key={id}>
-				<MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
+			<div className="insight-card " key={id}>
+				<MDBCard alignment='center' className='hover-zoom'>
 					<MDBCardBody>
 
 						<MDBCardTitle className="CardMainHeading">{discription.origin}</MDBCardTitle>
@@ -101,10 +101,9 @@ const Insights = () => {
 						</div > : null}
 
 						{(toggle[id].name) ?
-							<MDBBtn href='#' onClick={handleOnClick}>Less Details</MDBBtn> :
-							<MDBBtn href='#' onClick={handleOnClick}>More Details</MDBBtn>
+							<button onClick={handleOnClick}  className="bttn">Less Details</button> :
+							<button onClick={handleOnClick}  className="bttn">More Details</button>
 						}
-
 					</MDBCardBody >
 				</MDBCard >
 			</div >
@@ -156,7 +155,7 @@ const Insights = () => {
 			return res.data.status
 		} catch (e) {
 			console.log("Error -> " + e)
-		}
+		}	
 	}
 
 	const addressType = async (ToAddress: any) => {
