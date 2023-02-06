@@ -155,7 +155,11 @@ header
   color: black;
   background: none;
 }
-
+.ant-anchor-wrapper .ant-anchor .ant-anchor-link-active>.ant-anchor-link-title{
+  color: #604b2b ;
+  font-weight: 800;
+  /* font-size: 20px; */
+}
 
 /* 
 hero
@@ -328,6 +332,7 @@ Insights
 .bttn{
   background-color: #c3995a;
   color: black;
+  font-weight: 500;
   padding: 5px 20px;
   border: 2px solid black ;
   border-radius: 10px;
@@ -425,6 +430,9 @@ faqs
 */
 .faqBlock .ant-collapse {
   margin: 0 0 40px;
+  background-color: #fffaf3;
+  border: 1px solid black;
+     
 }
 
 .faqBlock .quickSupport {

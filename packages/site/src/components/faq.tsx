@@ -13,7 +13,7 @@ function AppFaq() {
           {/* <p>Quidem reiciendis iure, aperiam blanditiis. Alias esse, nam, ea quam</p> */}
         </div>
         <Collapse defaultActiveKey={['1']}>
-          <Panel header="What is metamask?" key="1">
+          <Panel header="What is metamask?" key="1" >
             <p>MetaMask is a browser plugin that serves as an Ethereum wallet, and is installed like any other browser plugin. Once it's installed, it allows users to store Ether and other ERC-20 tokens, enabling them to transact with any Ethereum address.</p>
           </Panel>
           <Panel header="How to get started with Metamask?" key="2">

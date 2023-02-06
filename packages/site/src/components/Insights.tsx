@@ -72,7 +72,6 @@ const Insights = () => {
 								<p className="CardMainHeading">Value:</p>
 								{discription.value}
 								{(discription.addressTypeVal == 1) ? " (Contract Address) " : " (Wallet Address)"}
-
 							</MDBCol>
 							<MDBCol size='md'>
 								<p className="CardMainHeading">To:</p>
@@ -241,9 +240,6 @@ const Insights = () => {
 				<div className="titleHolder">
 					<h2>Your Insight Transactions</h2>
 					<p>Doorway to An ETH Based crypto-wallet </p>
-				</div>
-				<div>
-					<Button type="primary" size="large" href="#" target="_blank" className="bttn">Demo Transaction</Button>
 				</div>
 
 				{Data.map((d, id) => {

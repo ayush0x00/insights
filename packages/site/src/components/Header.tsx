@@ -23,7 +23,7 @@ function AppHeader() {
           <i className="fas fa-bolt"></i>
           <a href="/#hero" >Metamask Snap</a>
         </div>
-
+        
         <div className="mobileHidden">
           <Anchor >
             <Link href="/#hero" title="Home" />
