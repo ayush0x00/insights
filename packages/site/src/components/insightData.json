@@ -21,6 +21,8 @@
           true
         ]
       },
+       "vulnerabilities": ["reentrancy","function calls"],
+      "addresses": ["0x84983948938489", "0x389y7473857465748"],
       "verifyAccountVal": "1",
       "addressTypeVal": "1"
     },
@@ -46,6 +48,8 @@
           true
         ]
       },
+      "vulnerabilities": ["reentrancy","function calls"],
+      "addresses": ["0x84983948938489", "0x389y7473857465748"],
       "verifyAccountVal": "1",
       "addressTypeVal": "1"
     },
@@ -71,6 +75,8 @@
           true
         ]
       },
+      "vulnerabilities": ["reentrancy","function calls"],
+      "addresses": ["0x84983948938489", "0x389y7473857465748"],
       "verifyAccountVal": "1",
       "addressTypeVal": "1"
     },
@@ -96,6 +102,8 @@
           true
         ]
       },
+      "vulnerabilities": ["reentrancy","function calls"],
+      "addresses": ["0x84983948938489", "0x389y7473857465748"],
       "verifyAccountVal": "1",
       "addressTypeVal": "1"
     },
@@ -121,6 +129,8 @@
           true
         ]
       },
+      "vulnerabilities": ["reentrancy","function calls"],
+      "addresses": ["0x84983948938489", "0x389y7473857465748"],
       "verifyAccountVal": "1",
       "addressTypeVal": "1"
     },
@@ -146,6 +156,8 @@
           true
         ]
       },
+      "vulnerabilities": ["reentrancy","function calls"],
+      "addresses": ["0x84983948938489", "0x389y7473857465748"],
       "verifyAccountVal": "1",
       "addressTypeVal": "1"
     },
@@ -171,6 +183,8 @@
           true
         ]
       },
+      "vulnerabilities": ["reentrancy","function calls"],
+      "addresses": ["0x84983948938489", "0x389y7473857465748"],
       "verifyAccountVal": "1",
       "addressTypeVal": "1"
     },
@@ -196,6 +210,8 @@
           true
         ]
       },
+      "vulnerabilities": ["reentrancy","function calls"],
+      "addresses": ["0x84983948938489", "0x389y7473857465748"],
       "verifyAccountVal": "1",
       "addressTypeVal": "1"
     },
@@ -221,6 +237,8 @@
           true
         ]
       },
+      "vulnerabilities": ["reentrancy","function calls"],
+      "addresses": ["0x84983948938489", "0x389y7473857465748"],
       "verifyAccountVal": "1",
       "addressTypeVal": "1"
     },
@@ -246,6 +264,8 @@
           true
         ]
       },
+      "vulnerabilities": ["reentrancy","function calls"],
+      "addresses": ["0x84983948938489", "0x389y7473857465748"],
       "verifyAccountVal": "1",
       "addressTypeVal": "1"
     },
@@ -271,6 +291,8 @@
           true
         ]
       },
+      "vulnerabilities": ["reentrancy","function calls"],
+      "addresses": ["0x84983948938489", "0x389y7473857465748"],
       "verifyAccountVal": "1",
       "addressTypeVal": "1"
     },
@@ -296,6 +318,8 @@
           true
         ]
       },
+      "vulnerabilities": ["reentrancy","function calls"],
+      "addresses": ["0x84983948938489", "0x389y7473857465748"],
       "verifyAccountVal": "1",
       "addressTypeVal": "1"
     }
