@@ -1,9 +1,8 @@
-import React from 'react'
-import AppHeader from './Header'
 import axios from "axios";
+import React, { useState } from 'react';
 import { Button } from 'antd';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import { Row, Col } from 'antd';
+import Data from './insightData.json';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardText, MDBCardTitle, MDBCol, MDBRow } from 'mdb-react-ui-kit';
 import {
 	add0x,
@@ -29,56 +28,91 @@ type FourByteSignature = {
 	bytes_signature: string;
 };
 
-const data = {
-	"origin": "https://www.abc.net.au",
-	"from": "0x2222222222222222",
-	"to": "0x1111111111111111",
-	"value": "0x0",
-	"gas": "0x53573",
-	"chainId": "eip155:1",
-	"addressType": "contract",
-	"whetherVerified": "true",
-	"mlData": {
-		"vulnarablities": [
-			"vul1",
-			"vul2"
-		],
-		"addresses": [
-			"0x1111111111111111",
-			"0x2222222222222222"
-		]
-	},
-	"data": {
-		"type": "function(params...)",
-		"params": [
-			["param1", "param2"],
-			"bool"
-		]
-	}
-}
+console.log(Data.length)
 
 const Insights = () => {
 
-	const [showResults1, setShowResults1] = React.useState(false)
-	const [showResults2, setShowResults2] = React.useState(false)
-	const onClick1 = () => {
-		if (showResults1 == false) {
-			setShowResults1(true)
+	const [toggle, setToggle] = useState([
+		{ id: 0, name: false },
+		{ id: 1, name: false },
+		{ id: 2, name: false },
+		{ id: 3, name: false },
+		{ id: 4, name: false },
+		{ id: 5, name: false },
+		{ id: 6, name: false },
+		{ id: 7, name: false },
+		{ id: 8, name: false },
+		{ id: 9, name: false },
+		{ id: 10, name: false },
+		{ id: 11, name: false },
+		{ id: 12, name: false },
+		{ id: 13, name: false },
+	]);
+	
+
+	const ToggleItem = ({ discription, id }) => {
+		function handleOnClick() {
+			const newToggle = [...toggle];
+			newToggle[id].name = !newToggle[id].name;
+			setToggle(newToggle);
 		}
-		else {
-			setShowResults1(false)
-		}
-	}
-	const onClick2 = () => {
-		if (showResults2 == false) {
-			setShowResults2(true)
-		}
-		else {
-			setShowResults2(false)
-		}
-	}
+
+		return (
+			<div className="single-history" key={id}>
+				<MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
+					<MDBCardBody>
+
+						<MDBCardTitle className="CardMainHeading">{discription.origin}</MDBCardTitle>
+						<br />
+						<MDBRow>
+							<MDBCol size='md'>
+								<p className="CardMainHeading">From:</p> {discription.from}
+							</MDBCol>
+							<MDBCol size='md'>
+								<p className="CardMainHeading">Value:</p>
+								{discription.value}
+								{(discription.addressTypeVal == 1) ? " (Contract Address) " : " (Wallet Address)"}
+
+							</MDBCol>
+							<MDBCol size='md'>
+								<p className="CardMainHeading">To:</p>
+								{discription.to}
+							</MDBCol>
+						</MDBRow>
+						<br />
+						{(toggle[id].name) ? <div id="hiddenData">
+							<MDBRow>
+								<MDBCol size='md'>
+									<p className="CardMainHeading">ChainId:</p> {discription.chainId}
+									<br></br><br />
+									<p className="CardMainHeading">Gas:</p> {discription.gas}
+								</MDBCol>
+								<MDBCol size='md'>
+									<p className="CardMainHeading">Function signature:</p> {discription.funcDat.type}<br />
+
+								</MDBCol>
+								<MDBCol size='md'>
+									<p className="CardMainHeading">Function parameters:</p>
+									{discription.funcDat.params[0][0]} <br /> {discription.funcDat.params[0][1]}
+									{/* <p className="CardMainHeading">ML Data:</p>    {discription.mlData.vulnarablities} */}
+									{/* <p className="CardMainHeading">Your address:</p>   {discription.to} */}
+								</MDBCol>
+							</MDBRow>
+						</div > : null}
+
+						{(toggle[id].name) ?
+							<MDBBtn href='#' onClick={handleOnClick}>Less Details</MDBBtn> :
+							<MDBBtn href='#' onClick={handleOnClick}>More Details</MDBBtn>
+						}
+
+					</MDBCardBody >
+				</MDBCard >
+			</div >
+		);
+	};
 
 	React.useEffect(() => {
+		// initializeToggle();
 		loadInsights()
 	}, [])
 
@@ -211,92 +245,15 @@ const Insights = () => {
 				</div>
 				<div>
 					<Button type="primary" size="large" href="#" target="_blank" className="bttn">Demo Transaction</Button>
-					{/* <Button type="primary" size="large" target="_blank" onClick={displayInsights}>Show Transactions</Button> */}
 				</div>
-				<MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
-                    <MDBCardBody>
-                       
-                        <MDBCardTitle className="CardMainHeading">{data.origin}</MDBCardTitle>
-                        <br />
-                        <MDBRow>
-                            <MDBCol size='md'>
-                                <p className="CardMainHeading">From:</p> {data.from}
-                                {/* <MDBRow></MDBRow> */}
-                            </MDBCol>
-                            {/* <MDBCol size='md'>
-                                {data.from}
-                            </MDBCol> */}
-                            <MDBCol size='md'>
-                            <p className="CardMainHeading">Value:</p>
-                                {data.value}
-                            </MDBCol>
-                            <MDBCol size='md'>
-                            <p className="CardMainHeading">To:</p>
-                                {data.to}
-                                ({data.addressType})
-                            </MDBCol>
-                        </MDBRow>
-						<br />
-                        <div id="hiddenData">
-                            <MDBRow>
-                                <MDBCol size='md'>
 
-								<p className="CardMainHeading">ChainId:</p> {data.chainId}
-                                    <br></br><br />
-									<p className="CardMainHeading">Gas:</p> {data.gas}
-                                </MDBCol>
-                                <MDBCol size='md'>
-								<p className="CardMainHeading">ML Data:</p>    {data.mlData.vulnarablities}
-                                </MDBCol>
-                                <MDBCol size='md'>
-								<p className="CardMainHeading">To:</p>   {data.to}
-                                </MDBCol>
-                            </MDBRow>
-                        </div>
-                        <MDBBtn href='#' id="toggle">More Details</MDBBtn>
-                    </MDBCardBody>
-                </MDBCard>
-                <MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
-                    <MDBCardBody>
-                        <MDBCardTitle>{data.origin}</MDBCardTitle>
-                        <MDBRow>
-                            <MDBCol size='md'>
-                                {data.from}
-                            </MDBCol>
-                            <MDBCol size='md'>
-                                {data.value}
-                            </MDBCol>
-                            <MDBCol size='md'>
-                                {data.to}
-                                ({data.addressType})
-                            </MDBCol>
-                        </MDBRow>
-                        {showResults2 ?
-                            <div id="hiddenData">
-                                <MDBRow>
-                                    <MDBCol size='md'>
-                                        {data.chainId}
-                                        <br></br>
-                                        {data.gas}
-                                    </MDBCol>
-                                    <MDBCol size='md'>
-                                        {data.mlData.vulnarablities}
-                                    </MDBCol>
-                                    <MDBCol size='md'>
-                                        {data.to}
-                                    </MDBCol>
-                                </MDBRow>
-                            </div> : null
-                        }
-                        {showResults2 ?
-                            <MDBBtn href='#' onClick={onClick2}>Less Details</MDBBtn> :
-                            <MDBBtn href='#' onClick={onClick2}>More Details</MDBBtn>
-                        }
-                    </MDBCardBody>
-                </MDBCard>
-            </div>
-        </div>
-    )
+				{Data.map((d, id) => {
+					return <ToggleItem id={id} discription={d} />;
+				})}
+
+			</div>
+		</div>
+	)
 }
 
 
