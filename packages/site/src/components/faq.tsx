@@ -13,7 +13,7 @@ function AppFaq() {
           {/* <p>Quidem reiciendis iure, aperiam blanditiis. Alias esse, nam, ea quam</p> */}
         </div>
         <Collapse defaultActiveKey={['1']}>
-          <Panel header="What is metamask?" key="1">
+          <Panel header="What is metamask?" key="1" >
             <p>MetaMask is a browser plugin that serves as an Ethereum wallet, and is installed like any other browser plugin. Once it's installed, it allows users to store Ether and other ERC-20 tokens, enabling them to transact with any Ethereum address.</p>
           </Panel>
           <Panel header="How to get started with Metamask?" key="2">
@@ -35,7 +35,7 @@ function AppFaq() {
         <div className="quickSupport">
           <h3>Want quick support?</h3>
           <p>MetaMask is the first wallet to offer extensibility. Snaps will boost the rate of innovation not just in Ethereum, but the entire Web3 ecosystem. Now Web3 developers can use the full power of MetaMask and create entirely new types of dapps. Any developer can create a Snap, and users will be able to choose which Snaps to utilize and integrate into their wallet in the future.</p>
-          <Button type="primary" size="large"><i className="fas fa-envelope"></i> Email your question</Button>
+          <button className='bttn'><i className="fas fa-envelope"></i> Email your question</button>
         </div>
       </div>
     </div>  

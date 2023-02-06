@@ -58,8 +58,8 @@ const Insights = () => {
 		}
 
 		return (
-			<div className="single-history" key={id}>
-				<MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
+			<div className="insight-card " key={id}>
+				<MDBCard alignment='center' className='hover-zoom'>
 					<MDBCardBody>
 
 						<MDBCardTitle className="CardMainHeading">{discription.origin}</MDBCardTitle>
@@ -72,7 +72,6 @@ const Insights = () => {
 								<p className="CardMainHeading">Value:</p>
 								{discription.value}
 								{(discription.addressTypeVal == 1) ? " (Contract Address) " : " (Wallet Address)"}
-
 							</MDBCol>
 							<MDBCol size='md'>
 								<p className="CardMainHeading">To:</p>
@@ -101,10 +100,9 @@ const Insights = () => {
 						</div > : null}
 
 						{(toggle[id].name) ?
-							<MDBBtn href='#' onClick={handleOnClick}>Less Details</MDBBtn> :
-							<MDBBtn href='#' onClick={handleOnClick}>More Details</MDBBtn>
+							<button onClick={handleOnClick}  className="bttn">Less Details</button> :
+							<button onClick={handleOnClick}  className="bttn">More Details</button>
 						}
-
 					</MDBCardBody >
 				</MDBCard >
 			</div >
@@ -156,7 +154,7 @@ const Insights = () => {
 			return res.data.status
 		} catch (e) {
 			console.log("Error -> " + e)
-		}
+		}	
 	}
 
 	const addressType = async (ToAddress: any) => {
@@ -242,9 +240,6 @@ const Insights = () => {
 				<div className="titleHolder">
 					<h2>Your Insight Transactions</h2>
 					<p>Doorway to An ETH Based crypto-wallet </p>
-				</div>
-				<div>
-					<Button type="primary" size="large" href="#" target="_blank" className="bttn">Demo Transaction</Button>
 				</div>
 
 				{Data.map((d, id) => {
