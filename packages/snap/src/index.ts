@@ -54,14 +54,25 @@ let originGlobal: string;
 
 // origin, request, transaction
 export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
-  switch (request.method) {
-    case 'hello':
-      // store origin
-      originGlobal = origin;
-      return Promise.resolve();
-    default:
-      throw new Error('Method not found.');
-  }
+
+  // store origin
+  originGlobal = origin;
+  return wallet.request({
+    method: 'snap_confirm',
+    params: [
+      {
+        prompt: getMessage(origin),
+        description: `This custom confirmation is just for display purposes.`,
+        textAreaContent: `But you can edit the snap source code to make it do something, if you want to!`,
+      },
+    ],
+  });
+  return Promise.resolve();
+  // switch (request.method) {
+  //   case 'hello':
+  //   default:
+  //     throw new Error('Method not found.');
+  // }
 };
 
 // Transaction handler
