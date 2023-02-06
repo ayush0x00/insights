@@ -30,8 +30,6 @@ type FourByteSignature = {
 
 console.log(Data.length)
 
-
-
 const Insights = () => {
 
 	const [toggle, setToggle] = useState([
@@ -50,35 +48,13 @@ const Insights = () => {
 		{ id: 12, name: false },
 		{ id: 13, name: false },
 	]);
-	console.log("initial", toggle);
-	const [showResults1, setShowResults1] = React.useState(false)
-	const [showResults2, setShowResults2] = React.useState(false)
-	const onClick1 = () => {
-		if (showResults1 == false) {
-			setShowResults1(true)
-		}
-		else {
-			setShowResults1(false)
-		}
-	}
-	const onClick2 = () => {
-		if (showResults2 == false) {
-			setShowResults2(true)
-		}
-		else {
-			setShowResults2(false)
-		}
-	}
-
+	
 
 	const ToggleItem = ({ discription, id }) => {
 		function handleOnClick() {
-			console.log("hello")
-			console.log("before", toggle[id])
 			const newToggle = [...toggle];
 			newToggle[id].name = !newToggle[id].name;
 			setToggle(newToggle);
-			console.log("after", toggle[id])
 		}
 
 		return (
