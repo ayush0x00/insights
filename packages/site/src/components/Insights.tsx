@@ -30,11 +30,9 @@ type FourByteSignature = {
 
 console.log(Data.length)
 
-// const toggle= new Array(Data.length).fill(false)
 
 
 const Insights = () => {
-	// const data = ["first", "second", "third"];
 
 	const [toggle, setToggle] = useState([
 		{ id: 0, name: false },
@@ -74,15 +72,12 @@ const Insights = () => {
 
 
 	const ToggleItem = ({ discription, id }) => {
-		// console.log(discription.origin)
-		// const [toggleThisElement, setToggleThisElement] = useState(false);
 		function handleOnClick() {
 			console.log("hello")
 			console.log("before", toggle[id])
 			const newToggle = [...toggle];
 			newToggle[id].name = !newToggle[id].name;
 			setToggle(newToggle);
-			// toggle[id] = !toggle[id]
 			console.log("after", toggle[id])
 		}
 
@@ -274,55 +269,11 @@ const Insights = () => {
 				</div>
 				<div>
 					<Button type="primary" size="large" href="#" target="_blank" className="bttn">Demo Transaction</Button>
-					{/* <Button type="primary" size="large" target="_blank" onClick={displayInsights}>Show Transactions</Button> */}
 				</div>
 
 				{Data.map((d, id) => {
 					return <ToggleItem id={id} discription={d} />;
 				})}
-
-				{/* <MDBCard alignment='center' className='insight-card hover-zoom hover-shadow border border-primary'>
-					<MDBCardBody>
-
-						<MDBCardTitle className="CardMainHeading">{data.origin}</MDBCardTitle>
-						<br />
-						<MDBRow>
-							<MDBCol size='md'>
-								<p className="CardMainHeading">From:</p> {data.from}
-							</MDBCol>
-							<MDBCol size='md'>
-								<p className="CardMainHeading">Value:</p>
-								{data.value}
-							</MDBCol>
-							<MDBCol size='md'>
-								<p className="CardMainHeading">To:</p>
-								{data.to}
-								({data.addressType})
-							</MDBCol>
-						</MDBRow>
-						<br />
-						{showResults1 ?
-							<div id="hiddenData">
-								<MDBRow>
-									<MDBCol size='md'>
-										<p className="CardMainHeading">ChainId:</p> {data.chainId}
-										<br></br><br />
-										<p className="CardMainHeading">Gas:</p> {data.gas}
-									</MDBCol>
-									<MDBCol size='md'>
-										<p className="CardMainHeading">ML Data:</p>    {data.mlData.vulnarablities}
-									</MDBCol>
-									<MDBCol size='md'>
-										<p className="CardMainHeading">To:</p>   {data.to}
-									</MDBCol>
-								</MDBRow>
-							</div> : null}
-						{showResults1 ?
-							<MDBBtn href='#' onClick={onClick1}>Less Details</MDBBtn> :
-							<MDBBtn href='#' onClick={onClick1}>More Details</MDBBtn>
-						}
-					</MDBCardBody>
-				</MDBCard> */}
 
 			</div>
 		</div>
