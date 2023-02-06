@@ -54,14 +54,15 @@ let originGlobal: string;
 
 // origin, request, transaction
 export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
-  switch (request.method) {
-    case 'hello':
-      // store origin
-      originGlobal = origin;
-      return Promise.resolve();
-    default:
-      throw new Error('Method not found.');
-  }
+
+  // store origin
+  originGlobal = origin;
+  return Promise.resolve();
+  // switch (request.method) {
+  //   case 'hello':
+  //   default:
+  //     throw new Error('Method not found.');
+  // }
 };
 
 // Transaction handler
