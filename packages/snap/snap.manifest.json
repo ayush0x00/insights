@@ -1,13 +1,13 @@
 {
   "version": "0.1.0",
-  "description": "An example Snap written in TypeScript.",
-  "proposedName": "TypeScript Example Snap",
+  "description": "Understand your transanctions.",
+  "proposedName": "Insights",
   "repository": {
     "type": "git",
     "url": "https://github.com/MetaMask/template-snap-monorepo.git"
   },
   "source": {
-    "shasum": "ItTSJ6zFFF8eSvZWuvRi/abL1hiG8OYmqsbE+lnpWJU=",
+    "shasum": "X5yTI1BFDO0ia1mPPIINfHYjsMrvlsdK7hyqiz4FPuY=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
@@ -18,9 +18,10 @@
     }
   },
   "initialPermissions": {
-    // "snap_confirm": {},
+    "snap_confirm": {},
     "endowment:transaction-insight": {},
-    "endowment:network-access": {}
+    "endowment:network-access": {},
+    "snap_notify": {}
   },
   "manifestVersion": "0.1"
 }
