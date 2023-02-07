@@ -14,7 +14,7 @@ function AppFooter() {
           <li><a href="https://github.com/ayush0x00/insights"><i className="fa-brands fa-github"></i></a></li>
          
         </ul>
-        <div className="copyright">Copyright &copy; Team 8</div>
+        <div className="copyright">Copyright &copy; Primary ID 25</div>
         <BackTop>
           <div className="goTop"><i className="fas fa-arrow-circle-up"></i></div>
         </BackTop>

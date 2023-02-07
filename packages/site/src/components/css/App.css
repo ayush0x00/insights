@@ -6,6 +6,7 @@ general
 @import url('https://fonts.googleapis.com/css2?family=Itim&family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
 body {
   font-size: 16px;
   line-height: 1.6;
@@ -24,6 +25,11 @@ body {
   background: #fff !important;
 }
 
+.anticon svg {
+  font-size: 20px;
+  margin: 0px 0px 15% 10px;
+}
+
 .mainLayout .ant-layout-header {
   background: #f8f8f8;
   padding: 0;
@@ -34,7 +40,7 @@ body {
 p {
   font-size: 16px;
   line-height: 1.6;
-  
+
 }
 
 .bgGray {
@@ -79,10 +85,12 @@ header
   right: 0;
   z-index: 999;
 }
-.navbar{
+
+.navbar {
   background-color: #fbedda;
   height: 12vh;
 }
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -100,6 +108,7 @@ header
 
 
 }
+
 .header .logo .fas {
   color: black;
   margin: 0 5px 0 0;
@@ -150,13 +159,15 @@ header
   color: black;
   background: none;
 }
+
 .header .ant-menu li.ant-menu-item-selected,
 .header .ant-menu li.ant-menu-item:active {
   color: black;
   background: none;
 }
-.ant-anchor-wrapper .ant-anchor .ant-anchor-link-active>.ant-anchor-link-title{
-  color: #604b2b ;
+
+.ant-anchor-wrapper .ant-anchor .ant-anchor-link-active>.ant-anchor-link-title {
+  color: #604b2b;
   font-weight: 800;
   /* font-size: 20px; */
 }
@@ -200,23 +211,27 @@ hero
   justify-content: center;
   /* padding: 0 0 70px; */
 }
+
 @media only screen and (min-width: 1200px) {
   .heroBlock .content {
     padding: 30vh 5vw;
   }
 }
+
 @media only screen and (min-width: 600px) and (max-width: 1200px) {
   .heroBlock .content {
     padding: 20vh 5vw;
   }
 }
+
 @media only screen and (max-width: 600px) and (min-width: 400px) {
   .heroBlock .content {
     padding: 15vh 5vw;
   }
 }
+
 @media only screen and (max-width: 400px) {
-  .heroBlock .content{
+  .heroBlock .content {
     padding: 5vh;
   }
 }
@@ -228,41 +243,56 @@ hero
   margin: 0 0 30px;
   width: 21.5ch;
   color: white;
-	white-space: nowrap;
-	overflow: hidden;
+  white-space: nowrap;
+  overflow: hidden;
   font-family: 'Itim', cursive;
-	border-right: 4px solid #212121;
-	animation: cursor 1s step-start infinite, 
-    text 2.5s steps(40,end) alternate ;
+  border-right: 4px solid #212121;
+  animation: cursor 1s step-start infinite,
+    text 2.5s steps(40, end) alternate;
 }
-.hero-btn{
+
+.hero-btn {
   margin: 10px 0px;
 }
-.hero-content{
+
+.hero-info h4{
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.hero-content {
   text-align: center;
-  background-color:  rgba(4, 4, 5, 0.317) ;
-  border:  solid black 1px;
+  background-color: rgba(4, 4, 5, 0.317);
+  border: solid black 1px;
   border-radius: 2rem;
   /* box-shadow: 5px 5px 5px 3px rgba(21, 20, 20, 0.2); */
   box-shadow: rgba(244, 239, 239, 0.25) 0px 54px 55px, rgba(149, 149, 149, 0.12) 0px -12px 30px, rgba(165, 161, 161, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(221, 218, 218, 0.09) 0px -3px 5px;
-  padding: 2rem ;
+  padding: 2rem;
   height: auto;
 }
-.hero-content p{
-  font-weight:"bold";
+
+.hero-content p {
+  font-weight: "bold";
 }
+
 @keyframes cursor {
-	0%, 100% { 
-    border-color: #212121; 
+
+  0%,
+  100% {
+    border-color: #212121;
   }
 }
 
 @keyframes text {
-	0% { 
-    width: 0; 
+  0% {
+    width: 0;
   }
-	100% { 
-    width: 21.5ch; 
+
+  100% {
+    width: 21.5ch;
   }
 }
 
@@ -292,7 +322,7 @@ block
 }
 
 /* button */
-.buttonAlign{
+.buttonAlign {
   text-align: center;
   justify-content: center;
   margin-left: 500px;
@@ -302,7 +332,7 @@ block
 Insights
 ----- 
 */
-.insightBlock{
+.insightBlock {
   background-image: url(https://images.pexels.com/photos/8370747/pexels-photo-8370747.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -311,43 +341,49 @@ Insights
   box-shadow: 0px 0px 0px 4000px rgba(45, 47, 48, 0.5) inset;
   padding-top: 15vh;
 }
-.insightBlock .titleHolder{
+
+.insightBlock .titleHolder {
   font-family: 'Itim', cursive;
   color: white;
   font-size: 100px;
 }
+
 .insightBlock .contentHolder {
   font-family: 'Poppins', sans-serif;
   text-align: center;
 }
+
 .insight-card {
   margin: 1rem;
   border: 2px solid black;
   background-color: #fbedda;
   border-radius: 20px;
 }
-.card-body{
+
+.card-body {
   background-color: #fbedda;
 }
-.bttn{
+
+.bttn {
   background-color: #c3995a;
   color: black;
   font-weight: 500;
   padding: 5px 20px;
-  border: 2px solid black ;
+  border: 2px solid black;
   border-radius: 10px;
 }
-.bttn:hover{
+
+.bttn:hover {
   background-color: #000;
   color: #c3995a;
   border: 2px solid #c3995a;
 }
 
-.insightsButtonCSS{
-  color: black ;
+.insightsButtonCSS {
+  color: black;
 }
 
-.CardMainHeading{
+.CardMainHeading {
   font-family: 'Itim', cursive;
   font-weight: 600;
   margin-top: -10px;
@@ -359,10 +395,11 @@ about
 ----- 
 */
 
-.aboutBlock .titleHolder{
+.aboutBlock .titleHolder {
   font-family: 'Itim', cursive;
   font-size: 100px;
 }
+
 .aboutBlock .contentHolder {
   text-align: center;
   margin: 0 0 50px;
@@ -376,7 +413,7 @@ about
 
 .aboutBlock .content {
   text-align: center;
-  
+
 }
 
 /* 
@@ -385,7 +422,7 @@ how it works
 */
 .worksBlock {
   /* background: url('assets/images/bg-works.jpg') no-repeat; */
-   background: url('https://www.freepik.com/free-photo/beautiful-cryptocurrency-hologram-design_22126344.htm#query=metamask&position=14&from_view=keyword') no-repeat;
+  background: url('https://www.freepik.com/free-photo/beautiful-cryptocurrency-hologram-design_22126344.htm#query=metamask&position=14&from_view=keyword') no-repeat;
 
   background-position: 50% 0;
   background-size: cover;
@@ -432,13 +469,13 @@ faqs
   margin: 0 0 40px;
   background-color: #fffaf3;
   border: 1px solid black;
-     
+
 }
 
 .faqBlock .quickSupport {
   text-align: center;
   max-width: 740px;
-  margin: auto;
+  margin: 10vh auto 5vh;
 }
 
 .faqBlock .fas {
@@ -453,7 +490,7 @@ pricing block
   text-align: center;
 }
 
-.pricingBlock .ant-row > div:nth-child(2) .ant-list-item {
+.pricingBlock .ant-row>div:nth-child(2) .ant-list-item {
   box-shadow: 0 0 12px 2px #f3f3f3;
   transform: scale(1.1);
   position: relative;
@@ -495,12 +532,13 @@ footer
 ------
 */
 .ant-layout-footer {
-  background:  #604b2b !important;
+  background: #604b2b !important;
   color: black !important;
   padding: 60px 0 !important;
   text-align: center;
-  margin : 0 0 0 0 !important;
+  margin: 0 0 0 0 !important;
 }
+
 .footer .logo {
   font-size: 22px;
   text-transform: uppercase;
@@ -543,7 +581,7 @@ footer
   opacity: 0.7;
 }
 
-.footer .copyright{
+.footer .copyright {
   font-family: 'Poppins', sans-serif;
 }
 
@@ -560,20 +598,20 @@ responsive
 ----------
 */
 @media only screen and (max-width: 991px) {
-  .pricingBlock .ant-row > div:nth-child(2) .ant-list-item {
+  .pricingBlock .ant-row>div:nth-child(2) .ant-list-item {
     transform: scale(1.14);
   }
 }
 
 @media only screen and (max-width: 767px) {
-  .pricingBlock .ant-row > div:nth-child(2) .ant-list-item {
+  .pricingBlock .ant-row>div:nth-child(2) .ant-list-item {
     transform: scale(1);
   }
 
   .mobileVisible {
     display: block;
   }
-  
+
   .mobileHidden {
     display: none;
   }

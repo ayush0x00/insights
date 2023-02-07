@@ -1,6 +1,9 @@
 import React from 'react';
 
 import { Collapse, Button } from 'antd';
+import {
+  MailOutlined
+} from '@ant-design/icons';
 
 const { Panel } = Collapse;
 
@@ -35,7 +38,7 @@ function AppFaq() {
         <div className="quickSupport">
           <h3>Want quick support?</h3>
           <p>MetaMask is the first wallet to offer extensibility. Snaps will boost the rate of innovation not just in Ethereum, but the entire Web3 ecosystem. Now Web3 developers can use the full power of MetaMask and create entirely new types of dapps. Any developer can create a Snap, and users will be able to choose which Snaps to utilize and integrate into their wallet in the future.</p>
-          <button className='bttn'><i className="fas fa-envelope"></i> Email your question</button>
+          <i className="fas fa-envelope"></i> <a href = "mailto: tiwari.ayush1028@gmail.com" className='bttn' style={{padding:"10px 15px"}}><MailOutlined style={{padding:"0px 10px 0px 0px"}} />Email your question</a>
         </div>
       </div>
     </div>  
