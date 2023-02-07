@@ -97,7 +97,7 @@ export const onTransaction: OnTransactionHandler = async ({
   const txData = remove0x(transaction.data);
   const funcSig = txData.slice(0, 8);
 
-  const res = await fetch(`${API_ENDPOINT}${add0x(funcSig)}`, {
+  /*const res = await fetch(`${API_ENDPOINT}${add0x(funcSig)}`, {
     method: 'get',
     headers: {
       'Content-type': 'application/json',
@@ -130,7 +130,7 @@ export const onTransaction: OnTransactionHandler = async ({
     )
     .split(',');
   const decoded = decode(paramTypes, add0x(txData.slice(8)));
-  insights.params = decoded.map(normalizeAbiValue);
+  insights.params = decoded.map(normalizeAbiValue);*/
   insights.origin = originGlobal;
   insights.chainId = chainId;
   insights.to = transaction.to as string;
@@ -157,6 +157,23 @@ export const onTransaction: OnTransactionHandler = async ({
   };
 
   await storeInsights();
+
+  // send notification on browser
+  try {
+    await wallet.request({
+      method: 'snap_notify',
+      params: [
+        {
+          type: 'native',
+          message: "Transaction insights have been saved!"
+        }
+
+      ]
+    })
+    insights.type = "notif"
+  } catch(e){
+    insights.type = "err"
+  }
 
   return { insights };
 
