@@ -42,9 +42,12 @@ enum TransactionConstants {
 function AppHero() {
 
   const [state, dispatch] = useContext(MetaMaskContext);
+  const [disableConnectButton, setDisableConnectButton] = React.useState(false);
+  const [userAddress, setUserAddress] = React.useState<string | null>(null);
 
   const handleConnectClick = async () => {
     try {
+      setDisableConnectButton(true);
       await connectSnap();
       const installedSnap = await getSnap();
 
@@ -52,7 +55,18 @@ function AppHero() {
         type: MetamaskActions.SetInstalled,
         payload: installedSnap,
       });
+
+      const [from] = (await window.ethereum.request({
+        method: 'eth_requestAccounts',
+      })) as string[];
+
+      if (!from) {
+        throw new Error('No accounts found');
+      }
+      setUserAddress(from);
+      setDisableConnectButton(false);
     } catch (e) {
+      setDisableConnectButton(false);
       console.error(e);
       dispatch({ type: MetamaskActions.SetError, payload: e });
     }
@@ -108,9 +122,13 @@ function AppHero() {
                   <div className="btnHolder">
                     <MDBRow>
                       <MDBCol size='md'>
-                        <button  className='bttn hero-btn' onClick={handleConnectClick}>Connect</button>
+                      <button  className='bttn hero-btn' onClick={handleConnectClick} disabled={disableConnectButton}>{userAddress==null? "C": "Rec"}onnect{disableConnectButton? "ing...": ""}</button>
                         <a href='/insights'><button  className="bttn hero-btn" >View Transaction</button></a>
+                        <button  className="bttn hero-btn" onClick={handleSendHelloClick} >Demo Transaction</button>
                       </MDBCol>
+                    </MDBRow>
+                    <MDBRow>
+                      <h4 style={{'color': 'white', 'fontSize': '17px', 'marginTop': '20px'}}>{userAddress==null? "Please Connect": `Hi ${userAddress}!`}</h4>
                     </MDBRow>
                   </div>
                 </div>
