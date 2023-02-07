@@ -26,6 +26,12 @@ yarn install && yarn start
 
 This should start the backend and the frontend servers locally. The backend is also deployed on the cloud. Currently, the frontend uses the cloud connection. To change the backend URL, please update the `.env` file in the backend workspace.
 
+## Starting the ML model
+The ML model is currently not hosted on the cloud, as it requires a bit of preprocessing based on GPU to generate the result. To get the ML analysis, you'll need to start the server manually.
+1. Go to the [model](/model/) pakcage
+2. Make sure you have all the dependencies installed
+3. Run `python app.py`. This will start a flask server on port `8000`. If this port is already in use, then please specify a free port in the [app.py](/model/app.py) file.
+
 ## Data flow visualization
 
 <a href="https://drive.google.com/uc?export=view&id=1bLolFcmz8ogiKqkKNLLUk63qK2B_TBJa"><img src="https://drive.google.com/uc?export=view&id=1bLolFcmz8ogiKqkKNLLUk63qK2B_TBJa" style="width: 650px; max-width: 100%; height: auto" title="Click to enlarge picture" />
