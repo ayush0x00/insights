@@ -29,6 +29,20 @@ body {
   font-size: 20px;
   margin: 0px 0px 15% 10px;
 }
+.ant-spin{
+  color: white;
+  padding: 0;
+  height: auto;
+  line-height: 1.6;
+  
+}
+.ant-spin-text { 
+  font-size: larger;
+  color: white; 
+}
+.ant-spin-dot-item {
+  background-color: white;
+}
 
 .mainLayout .ant-layout-header {
   background: #f8f8f8;

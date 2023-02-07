@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState } from 'react';
-import { Button } from 'antd';
+import {  Spin } from 'antd';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import Data from './insightData.json';
+import dData from './insightData.json';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardText, MDBCardTitle, MDBCol, MDBRow } from 'mdb-react-ui-kit';
 import {
 	add0x,
@@ -26,6 +26,8 @@ const VERIFY_API = "https://api.etherscan.io/api?module=contract&action=getabi&a
 const ADDRESS_TYPE_API = "https://api.etherscan.io/api?module=contract&action=getcontractcreation&contractaddresses="
 const FOUR_BYTE_API = 'https://www.4byte.directory/api/v1/signatures/?hex_signature='
 
+let Data = dData
+
 type FourByteSignature = {
 	id: number;
 	created_at: string;
@@ -34,7 +36,6 @@ type FourByteSignature = {
 	bytes_signature: string;
 };
 
-console.log(Data.length)
 
 const Insights = () => {
 	
@@ -54,13 +55,13 @@ const Insights = () => {
 			newToggle[id].name = !newToggle[id].name;
 			setToggle(newToggle);
 		}
-		const Vulnerabilty = discription.vulnerabilities.map((item) =>
-			<div>{item}</div>
-		);
+		// const Vulnerabilty = discription.vulnerabilities.map((item) =>
+		// 	<div>{item}</div>
+		// );
 
-		const addresses = discription.addresses.map((item) =>
-			<div>{item}</div>
-		);
+		// const addresses = discription.addresses.map((item) =>
+		// 	<div>{item}</div>
+		// );
 		const parameters = discription.funcDat.params[0].map((item) =>
 			<div>{item}</div>
 		);
@@ -80,7 +81,7 @@ const Insights = () => {
 							</MDBCol>
 							<MDBCol size='md'>
 								<p className="CardMainHeading">Value:</p>
-								{discription.value}
+								{parseInt(discription.value, 16)}
 							</MDBCol>
 							<MDBCol size='md'>
 								<p className="CardMainHeading">To:</p>
@@ -93,7 +94,7 @@ const Insights = () => {
 								<MDBCol size='md'>
 									<p className="CardMainHeading">Address type:</p> {(discription.addressTypeVal == 1) ? " (Contract Address) " : " (Wallet Address)"}
 									<br></br><br />
-									<p className="CardMainHeading">Gas:</p> {discription.gas }<br /><br />
+									<p className="CardMainHeading">Gas:</p> {parseInt(discription.gas, 16) } Wei<br /><br />
 									<p className="CardMainHeading">ChainId:</p> {discription.chainId}
 								</MDBCol>
 								<MDBCol size='md'>
@@ -103,8 +104,8 @@ const Insights = () => {
 
 								</MDBCol>
 								<MDBCol size='md'>
-									<p className="CardMainHeading">Vulnerabilties:</p>  {Vulnerabilty}<br />
-									<p className="CardMainHeading">Found addresses of Contract:</p>   {addresses}
+									{/* <p className="CardMainHeading">Vulnerabilties:</p>  {Vulnerabilty}<br />
+									<p className="CardMainHeading">Found addresses of Contract:</p>   {addresses} */}
 									
 								</MDBCol>
 							</MDBRow>
@@ -116,19 +117,18 @@ const Insights = () => {
 						}
 					</MDBCardBody >
 				</MDBCard >
-			</div >
+			</div >	
 		);
 	};
 	
+	const [loader, setLoader] = React.useState(true)
 
 	React.useEffect(() => {
 		// initializeToggle();
 		loadInsights()
-	}, [])
+	}, [loader])
 
 	const [insights, setInsights] = React.useState<any>([])
-
-
 
 	const loadInsights = async () => {
 		const origin = "http://localhost:8000"
@@ -241,10 +241,11 @@ const Insights = () => {
 		return value as Json;
 	}
 
-	const displayInsights = () => {
-		console.log(insights)
-	}
+	
 
+	const displayInsights = () => {
+		setLoader(false)
+	}
 
 	return (
 		<div id="insights" className="block insightBlock">
@@ -252,15 +253,18 @@ const Insights = () => {
 				<div className="titleHolder">
 					<h2>Your Insight Transactions</h2>
 					<p>Doorway to An ETH Based crypto-wallet </p>
+					{insights.length==0? <div className="container-fluid" style={{padding:"20vh"}}> <Spin tip="Loading" className="spin" size="large">
+      </Spin></div>:null}
 				</div>
-
-				{Data.map((d, id) => {
-					return <ToggleItem id={id} discription={d} />;
-				})}
+				{insights.length == 0 ?  null:
+						insights.map((d, id) => {
+						return <ToggleItem id={id} discription={d} />;})
+				}
 
 			</div>
 		</div>
 	)
+	
 }
 
 
