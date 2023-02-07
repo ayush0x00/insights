@@ -21,7 +21,7 @@ import {
 import { decode } from '@metamask/abi-utils';
 import {ethers} from 'ethers'
 
-const provider = ethers.getDefaultProvider('ropsten')
+
 // Global constants
 const API_KEY = "FGH2GQRYVUIRNZN9A8X27R4ES4X2Q6AEU9"
 const VERIFY_API = "https://api.etherscan.io/api?module=contract&action=getabi&address="
@@ -139,7 +139,15 @@ const Insights = () => {
 
 	const loadInsights = async () => {
 		const origin = "http://localhost:8000"
-		const addr = "0xe53b92bbf7ae51584fd79f89b6f0d4a14b4bcac3"
+
+		const [from] = (await window.ethereum.request({
+			method: 'eth_requestAccounts',
+		  })) as string[];
+	
+		  if (!from) {
+			throw new Error('No accounts found');
+		  }
+		  const addr = from
 		try {
 			const response = await axios.post('http://localhost:3000/insights', {
 				walletAddress: addr,
@@ -155,6 +163,7 @@ const Insights = () => {
 				const verifyAccountVal = await verifyAccount(insightList[i].to)
 				const addressTypeVal = await addressType(insightList[i].to)
 				const mlDataVal = await loadMlData(insightList[i].to)
+				console.log(mlDataVal)
 				let insightObj = await { ...response.data[i] }
 				insightObj["funcDat"] = funcData
 				insightObj["verifyAccountVal"] = verifyAccountVal
@@ -168,9 +177,10 @@ const Insights = () => {
 		}
 	}
 
-	const loadMlData = async (addr: String) => {
+	const loadMlData = async (addr: string) => {
         try {
-            const _ret = await provider.getCode(addr as AddressLike)
+			const byteAddr = ethers.getAddress(addr)
+            const _ret = await provider.getCode(byteAddr)
             const response = await axios.post('http://localhost:1234/', {
                 bytecode: _ret
             });

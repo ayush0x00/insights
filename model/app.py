@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import re
 from pyevmasm import disassemble_hex
@@ -8,7 +9,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
 app = Flask(__name__)
-
+CORS(app)
 
 def disassembler(bytecode):
     disassembled_data=disassemble_hex(bytecode)
@@ -22,23 +23,27 @@ def disassembler(bytecode):
 
 
 def predformatdata(bytecode):
-    MAX_WORDS = 41000
-    SEQ_LEN = 250
+    MAX_NB_WORDS = 41000
+    MAX_SEQUENCE_LENGTH  = 108
 
-    tokenizer = Tokenizer(num_words=MAX_WORDS,lower=True)
+    tokenizer = Tokenizer(num_words=MAX_NB_WORDS,lower=True)
     tokenizer.fit_on_texts(bytecode)
     word_index = tokenizer.word_index
     print('Found %s unique tokens.' % len(word_index))
 
     X = tokenizer.texts_to_sequences(bytecode)
-    X = pad_sequences(X, maxlen=SEQ_LEN)
+    X = pad_sequences(X, maxlen=MAX_SEQUENCE_LENGTH)
     print('Shape of data tensor:', X.shape)
     
     return X
 
+@app.route('/',methods=['GET'])
+def senHell():
+    return "Hello Palak"
 
 @app.route('/', methods=['POST'])
 def predict():
+    print(request)
     content = request.get_json()
     assembly_data , addresses = disassembler(content['bytecode'])
     assembly_data = assembly_data.replace('\n',' ')
@@ -56,16 +61,22 @@ def predict():
     a= loaded_model.predict([x])
     resDf = pd.DataFrame(a)
     predRes = resDf.mean(axis=0).to_list()
+    LABELS = {0:'access-control', 1:'arithmetic', 2:'other', 3:'reentrancy', 4:'safe', 5:'unchecked-calls'}
+    returnData = {}
+    i=0
+    for keys in LABELS.keys():
+        returnData[LABELS[keys]] = predRes[i]
+        i+=1
     data={
         "assembly_code":assembly_data,
         "addresses_found":addresses,
-        "predRes": predRes
+        "predRes": returnData
     }
     return jsonify(data)
 
 
 
 
-app.run("localhost","8000",debug=True)
+app.run("localhost","1234",debug=True)
 
 
