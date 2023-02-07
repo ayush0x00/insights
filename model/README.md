@@ -3,7 +3,7 @@
 
 ## Usage of server
 
-The server is made on Flask, and listens on port `8000`. If you have other applications listening on the specified port, change port number in [app.py](/app.py) file.
+The server is made on Flask, and listens on port `1234`. If you have other applications listening on the specified port, change port number in [app.py](/app.py) file.
 
 Make sure to install the dependencies mentioned in the [requirements.txt](/requirements.txt) file. The `model` packages contains a pretrained model. The dataset for the training process (preprocessed_data.csv) can be downloaded from [here](https://drive.google.com/drive/folders/1F09oo3pISNk-UOvYMbwmqmAfH_eVG2bH?usp=sharing).
 

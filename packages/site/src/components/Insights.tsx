@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState } from 'react';
-import { Button } from 'antd';
+import {  Spin } from 'antd';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import Data from './insightData.json';
+import dData from './insightData.json';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardText, MDBCardTitle, MDBCol, MDBRow } from 'mdb-react-ui-kit';
 import {
 	add0x,
@@ -19,12 +19,21 @@ import {
 	DownCircleOutlined
 } from '@ant-design/icons';
 import { decode } from '@metamask/abi-utils';
+import {ethers} from 'ethers'
 
+const provider = ethers.getDefaultProvider('ropsten')
 // Global constants
 const API_KEY = "FGH2GQRYVUIRNZN9A8X27R4ES4X2Q6AEU9"
 const VERIFY_API = "https://api.etherscan.io/api?module=contract&action=getabi&address="
 const ADDRESS_TYPE_API = "https://api.etherscan.io/api?module=contract&action=getcontractcreation&contractaddresses="
 const FOUR_BYTE_API = 'https://www.4byte.directory/api/v1/signatures/?hex_signature='
+const ML_API = 'http://localhost:1234'
+const ETH_NET = 'mainnet'
+const API_KEY_2 = '2eb963ef187f487086ed44e58a0aacf3'
+
+let Data = dData
+
+const provider= new ethers.InfuraProvider(ETH_NET, API_KEY_2);
 
 type FourByteSignature = {
 	id: number;
@@ -34,10 +43,9 @@ type FourByteSignature = {
 	bytes_signature: string;
 };
 
-console.log(Data.length)
 
 const Insights = () => {
-	
+	// console.log(provider.getCode("0x08a8fdbddc160a7d5b957256b903dcab1ae512c5"))
 	const initialToggle = [
 		{ id: 0, name: false }
 	];
@@ -54,13 +62,13 @@ const Insights = () => {
 			newToggle[id].name = !newToggle[id].name;
 			setToggle(newToggle);
 		}
-		const Vulnerabilty = discription.vulnerabilities.map((item) =>
-			<div>{item}</div>
-		);
+		// const Vulnerabilty = discription.vulnerabilities.map((item) =>
+		// 	<div>{item}</div>
+		// );
 
-		const addresses = discription.addresses.map((item) =>
-			<div>{item}</div>
-		);
+		// const addresses = discription.addresses.map((item) =>
+		// 	<div>{item}</div>
+		// );
 		const parameters = discription.funcDat.params[0].map((item) =>
 			<div>{item}</div>
 		);
@@ -80,7 +88,7 @@ const Insights = () => {
 							</MDBCol>
 							<MDBCol size='md'>
 								<p className="CardMainHeading">Value:</p>
-								{discription.value}
+								{parseInt(discription.value, 16)}
 							</MDBCol>
 							<MDBCol size='md'>
 								<p className="CardMainHeading">To:</p>
@@ -93,7 +101,7 @@ const Insights = () => {
 								<MDBCol size='md'>
 									<p className="CardMainHeading">Address type:</p> {(discription.addressTypeVal == 1) ? " (Contract Address) " : " (Wallet Address)"}
 									<br></br><br />
-									<p className="CardMainHeading">Gas:</p> {discription.gas }<br /><br />
+									<p className="CardMainHeading">Gas:</p> {parseInt(discription.gas, 16) } Wei<br /><br />
 									<p className="CardMainHeading">ChainId:</p> {discription.chainId}
 								</MDBCol>
 								<MDBCol size='md'>
@@ -103,8 +111,8 @@ const Insights = () => {
 
 								</MDBCol>
 								<MDBCol size='md'>
-									<p className="CardMainHeading">Vulnerabilties:</p>  {Vulnerabilty}<br />
-									<p className="CardMainHeading">Found addresses of Contract:</p>   {addresses}
+									{/* <p className="CardMainHeading">Vulnerabilties:</p>  {Vulnerabilty}<br />
+									<p className="CardMainHeading">Found addresses of Contract:</p>   {addresses} */}
 									
 								</MDBCol>
 							</MDBRow>
@@ -116,19 +124,18 @@ const Insights = () => {
 						}
 					</MDBCardBody >
 				</MDBCard >
-			</div >
+			</div >	
 		);
 	};
 	
+	const [loader, setLoader] = React.useState(true)
 
 	React.useEffect(() => {
 		// initializeToggle();
 		loadInsights()
-	}, [])
+	}, [loader])
 
 	const [insights, setInsights] = React.useState<any>([])
-
-
 
 	const loadInsights = async () => {
 		const origin = "http://localhost:8000"
@@ -147,6 +154,7 @@ const Insights = () => {
 				const funcData = await decodeData(insightList[i].data)
 				const verifyAccountVal = await verifyAccount(insightList[i].to)
 				const addressTypeVal = await addressType(insightList[i].to)
+				const mlDataVal = await loadMlData(insightList[i].to)
 				let insightObj = await { ...response.data[i] }
 				insightObj["funcDat"] = funcData
 				insightObj["verifyAccountVal"] = verifyAccountVal
@@ -159,6 +167,19 @@ const Insights = () => {
 			console.log("Error -> " + e)
 		}
 	}
+
+	const loadMlData = async (addr: String) => {
+        try {
+            const _ret = await provider.getCode(addr as AddressLike)
+            const response = await axios.post('http://localhost:1234/', {
+                bytecode: _ret
+            });
+            console.log(response)
+			return response
+        }catch (e) {
+            console.error(e)
+        }
+    }
 
 	const verifyAccount = async (ToAddress: String) => {
 		try {
@@ -241,10 +262,11 @@ const Insights = () => {
 		return value as Json;
 	}
 
-	const displayInsights = () => {
-		console.log(insights)
-	}
+	
 
+	const displayInsights = () => {
+		setLoader(false)
+	}
 
 	return (
 		<div id="insights" className="block insightBlock">
@@ -252,15 +274,18 @@ const Insights = () => {
 				<div className="titleHolder">
 					<h2>Your Insight Transactions</h2>
 					<p>Doorway to An ETH Based crypto-wallet </p>
+					{insights.length==0? <div className="container-fluid" style={{padding:"20vh"}}> <Spin tip="Loading" className="spin" size="large">
+      </Spin></div>:null}
 				</div>
-
-				{Data.map((d, id) => {
-					return <ToggleItem id={id} discription={d} />;
-				})}
+				{insights.length == 0 ?  null:
+						insights.map((d, id) => {
+						return <ToggleItem id={id} discription={d} />;})
+				}
 
 			</div>
 		</div>
 	)
+	
 }
 
 
