@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 // import { BrowserRouter, Route, Link } from "react-router-dom";
 import { Anchor, Drawer, Button } from 'antd';
 const { Link } = Anchor;
+import {
+  MenuFoldOutlined, HomeOutlined
+} from '@ant-design/icons';
 
 function AppHeader() {
   const [visible, setVisible] = useState(false);
@@ -23,7 +26,7 @@ function AppHeader() {
           <i className="fas fa-bolt"></i>
           <a href="/#hero" >Metamask Snap</a>
         </div>
-        
+
         <div className="mobileHidden">
           <Anchor >
             <Link href="/#hero" title="Home" />
@@ -35,7 +38,7 @@ function AppHeader() {
 
         <div className="mobileVisible">
           <button onClick={showDrawer} className="bttn">
-            <i className="fas fa-bars">Menu</i>
+            <MenuFoldOutlined/>
           </button>
           <Drawer
             placement="right"

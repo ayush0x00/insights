@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Button } from 'antd';
 import { Carousel } from 'antd';
 import { MetamaskActions, MetaMaskContext } from '../hooks';
 import { MDBCol, MDBRow } from 'mdb-react-ui-kit';
@@ -8,7 +7,6 @@ import {
   connectSnap,
   getSnap,
   sendHello,
-  shouldDisplayReconnectButton,
 } from '../utils';
 
 const items = [
@@ -122,13 +120,14 @@ function AppHero() {
                   <div className="btnHolder">
                     <MDBRow>
                       <MDBCol size='md'>
-                      <button  className='bttn hero-btn' onClick={handleConnectClick} disabled={disableConnectButton}>{userAddress==null? "C": "Rec"}onnect{disableConnectButton? "ing...": ""}</button>
-                        <a href='/insights'><button  className="bttn hero-btn" >View Transaction</button></a>
-                        <button  className="bttn hero-btn" onClick={handleSendHelloClick} >Demo Transaction</button>
+                        <button className='bttn hero-btn' onClick={handleConnectClick} disabled={disableConnectButton}>{userAddress == null ? "C" : "Rec"}onnect{disableConnectButton ? "ing..." : ""}</button>
+                        <a href='/insights'><button className="bttn hero-btn" >View Transaction</button></a>
+                        <button className="bttn hero-btn" onClick={handleSendHelloClick} >Demo Transaction</button>
                       </MDBCol>
                     </MDBRow>
                     <MDBRow>
-                      <h4 style={{'color': 'white', 'fontSize': '17px', 'marginTop': '20px'}}>{userAddress==null? "Please Connect": `Hi ${userAddress}!`}</h4>
+                      <div className='hero-info '>
+                        <h4>{userAddress == null ? "Please Connect" : `Hi ${userAddress}!`}</h4></div>
                     </MDBRow>
                   </div>
                 </div>

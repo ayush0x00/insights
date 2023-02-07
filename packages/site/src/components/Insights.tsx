@@ -12,6 +12,12 @@ import {
 	Json,
 	remove0x,
 } from '@metamask/utils';
+import {
+	UpCircleOutlined ,
+	CloseCircleOutlined,
+	CheckCircleOutlined,
+	DownCircleOutlined
+} from '@ant-design/icons';
 import { decode } from '@metamask/abi-utils';
 
 // Global constants
@@ -31,24 +37,16 @@ type FourByteSignature = {
 console.log(Data.length)
 
 const Insights = () => {
-
-	const [toggle, setToggle] = useState([
-		{ id: 0, name: false },
-		{ id: 1, name: false },
-		{ id: 2, name: false },
-		{ id: 3, name: false },
-		{ id: 4, name: false },
-		{ id: 5, name: false },
-		{ id: 6, name: false },
-		{ id: 7, name: false },
-		{ id: 8, name: false },
-		{ id: 9, name: false },
-		{ id: 10, name: false },
-		{ id: 11, name: false },
-		{ id: 12, name: false },
-		{ id: 13, name: false },
-	]);
 	
+	const initialToggle = [
+		{ id: 0, name: false }
+	];
+
+	for (let i = 1; i < Data.length; i++) {
+		initialToggle.push({ id: i, name: false });
+	}
+
+	const [toggle, setToggle] = useState(initialToggle);
 
 	const ToggleItem = ({ discription, id }) => {
 		function handleOnClick() {
@@ -56,13 +54,25 @@ const Insights = () => {
 			newToggle[id].name = !newToggle[id].name;
 			setToggle(newToggle);
 		}
+		const Vulnerabilty = discription.vulnerabilities.map((item) =>
+			<div>{item}</div>
+		);
+
+		const addresses = discription.addresses.map((item) =>
+			<div>{item}</div>
+		);
+		const parameters = discription.funcDat.params[0].map((item) =>
+			<div>{item}</div>
+		);
 
 		return (
 			<div className="insight-card " key={id}>
 				<MDBCard alignment='center' className='hover-zoom'>
 					<MDBCardBody>
 
-						<MDBCardTitle className="CardMainHeading">{discription.origin}</MDBCardTitle>
+						<MDBCardTitle className="CardMainHeading">{discription.origin}
+							{(discription.verifyAccountVal == 1) ? <CheckCircleOutlined className="Icons" title="Verified account" style={{ color: 'green' }} /> : <CloseCircleOutlined  className="Icons" title="Not verified account"  style={{color: 'red' }} />}
+						</MDBCardTitle>
 						<br />
 						<MDBRow>
 							<MDBCol size='md'>
@@ -71,7 +81,6 @@ const Insights = () => {
 							<MDBCol size='md'>
 								<p className="CardMainHeading">Value:</p>
 								{discription.value}
-								{(discription.addressTypeVal == 1) ? " (Contract Address) " : " (Wallet Address)"}
 							</MDBCol>
 							<MDBCol size='md'>
 								<p className="CardMainHeading">To:</p>
@@ -82,32 +91,35 @@ const Insights = () => {
 						{(toggle[id].name) ? <div id="hiddenData">
 							<MDBRow>
 								<MDBCol size='md'>
-									<p className="CardMainHeading">ChainId:</p> {discription.chainId}
+									<p className="CardMainHeading">Address type:</p> {(discription.addressTypeVal == 1) ? " (Contract Address) " : " (Wallet Address)"}
 									<br></br><br />
-									<p className="CardMainHeading">Gas:</p> {discription.gas}
+									<p className="CardMainHeading">Gas:</p> {discription.gas }<br /><br />
+									<p className="CardMainHeading">ChainId:</p> {discription.chainId}
 								</MDBCol>
 								<MDBCol size='md'>
-									<p className="CardMainHeading">Function signature:</p> {discription.funcDat.type}<br />
+									<p className="CardMainHeading">Function signature:</p> {discription.funcDat.type + " " +discription.funcDat.params[1]} <br></br><br />
+									<p className="CardMainHeading">Function parameters:</p>
+									{parameters}
 
 								</MDBCol>
 								<MDBCol size='md'>
-									<p className="CardMainHeading">Function parameters:</p>
-									{discription.funcDat.params[0][0]} <br /> {discription.funcDat.params[0][1]}
-									{/* <p className="CardMainHeading">ML Data:</p>    {discription.mlData.vulnarablities} */}
-									{/* <p className="CardMainHeading">Your address:</p>   {discription.to} */}
+									<p className="CardMainHeading">Vulnerabilties:</p>  {Vulnerabilty}<br />
+									<p className="CardMainHeading">Found addresses of Contract:</p>   {addresses}
+									
 								</MDBCol>
 							</MDBRow>
 						</div > : null}
 
 						{(toggle[id].name) ?
-							<button onClick={handleOnClick}  className="bttn">Less Details</button> :
-							<button onClick={handleOnClick}  className="bttn">More Details</button>
+							<button onClick={handleOnClick} className="bttn">Less Details <UpCircleOutlined /></button> :
+							<button onClick={handleOnClick} className="bttn">More Details<DownCircleOutlined /></button>
 						}
 					</MDBCardBody >
 				</MDBCard >
 			</div >
 		);
 	};
+	
 
 	React.useEffect(() => {
 		// initializeToggle();
