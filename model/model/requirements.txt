@@ -1,0 +1,10 @@
+Flask==2.2.2
+pandas==1.5.3
+pyevmasm==0.2.3
+
+## MAC OS based dependencies ##
+## The below dependencies are meant only for MAC OS ##
+## For other platforms please do pip install tensorflow ##
+
+tensorflow-macos==2.11.0
+tensorflow-metal==0.7.0
