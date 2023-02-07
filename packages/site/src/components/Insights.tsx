@@ -19,14 +19,21 @@ import {
 	DownCircleOutlined
 } from '@ant-design/icons';
 import { decode } from '@metamask/abi-utils';
+import {ethers} from 'ethers'
 
+const provider = ethers.getDefaultProvider('ropsten')
 // Global constants
 const API_KEY = "FGH2GQRYVUIRNZN9A8X27R4ES4X2Q6AEU9"
 const VERIFY_API = "https://api.etherscan.io/api?module=contract&action=getabi&address="
 const ADDRESS_TYPE_API = "https://api.etherscan.io/api?module=contract&action=getcontractcreation&contractaddresses="
 const FOUR_BYTE_API = 'https://www.4byte.directory/api/v1/signatures/?hex_signature='
+const ML_API = 'http://localhost:1234'
+const ETH_NET = 'mainnet'
+const API_KEY_2 = '2eb963ef187f487086ed44e58a0aacf3'
 
 let Data = dData
+
+const provider= new ethers.InfuraProvider(ETH_NET, API_KEY_2);
 
 type FourByteSignature = {
 	id: number;
@@ -38,7 +45,7 @@ type FourByteSignature = {
 
 
 const Insights = () => {
-	
+	// console.log(provider.getCode("0x08a8fdbddc160a7d5b957256b903dcab1ae512c5"))
 	const initialToggle = [
 		{ id: 0, name: false }
 	];
@@ -147,6 +154,7 @@ const Insights = () => {
 				const funcData = await decodeData(insightList[i].data)
 				const verifyAccountVal = await verifyAccount(insightList[i].to)
 				const addressTypeVal = await addressType(insightList[i].to)
+				const mlDataVal = await loadMlData(insightList[i].to)
 				let insightObj = await { ...response.data[i] }
 				insightObj["funcDat"] = funcData
 				insightObj["verifyAccountVal"] = verifyAccountVal
@@ -159,6 +167,19 @@ const Insights = () => {
 			console.log("Error -> " + e)
 		}
 	}
+
+	const loadMlData = async (addr: String) => {
+        try {
+            const _ret = await provider.getCode(addr as AddressLike)
+            const response = await axios.post('http://localhost:1234/', {
+                bytecode: _ret
+            });
+            console.log(response)
+			return response
+        }catch (e) {
+            console.error(e)
+        }
+    }
 
 	const verifyAccount = async (ToAddress: String) => {
 		try {

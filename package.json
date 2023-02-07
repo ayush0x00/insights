@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@metamask/abi-utils": "^1.1.1",
+    "ethers": "^6.0.2",
     "mdb-react-ui-kit": "^5.1.0",
     "react-router-dom": "^6.8.0"
   }
