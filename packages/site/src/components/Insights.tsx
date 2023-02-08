@@ -62,16 +62,25 @@ const Insights = () => {
 			newToggle[id].name = !newToggle[id].name;
 			setToggle(newToggle);
 		}
-		// const Vulnerabilty = discription.vulnerabilities.map((item) =>
-		// 	<div>{item}</div>
-		// );
+		const Vulnerabilty =
+			<div>
+				<div>Access Control: {predRes["access-control"]}</div>
+				<div>Arithmetic: {predRes["arithmetic"]}</div>
+				<div>Other: {predRes["other"]}</div>
+				<div>Safe: {predRes["safe"]}</div>
+				<div>Reentrancy: {predRes["reentrancy"]}</div>
+				<div>Unchecked Calls: {predRes["unchecked-calls"]}</div>
+			</div>
+		
 
-		// const addresses = discription.addresses.map((item) =>
-		// 	<div>{item}</div>
-		// );
+		const addresses = ml_addresses.map((item) =>
+			<div>{item}</div>
+		);
 		const parameters = discription.funcDat.params[0].map((item) =>
 			<div>{item}</div>
 		);
+		const fetchBtn=
+		<button onClick={()=>printMlData(insights[id].to)} className="bttn" style={{padding:"5px 10px"}} >{loader==false? "Fetch ML Data": "Analyzing..."}</button>
 
 		return (
 			<div className="insight-card " key={id}>
@@ -111,8 +120,11 @@ const Insights = () => {
 
 								</MDBCol>
 								<MDBCol size='md'>
-									{/* <p className="CardMainHeading">Vulnerabilties:</p>  {Vulnerabilty}<br />
-									<p className="CardMainHeading">Found addresses of Contract:</p>   {addresses} */}
+									{ml_addresses.length==0 ?fetchBtn
+									:<div>
+										<p className="CardMainHeading">Vulnerabilties:</p>  {Vulnerabilty}<br />
+										<p className="CardMainHeading">Found addresses of Contract:</p>   {addresses}
+									</div>}
 									
 								</MDBCol>
 							</MDBRow>
@@ -128,15 +140,27 @@ const Insights = () => {
 		);
 	};
 	
-	const [loader, setLoader] = React.useState(true)
+	const [loader, setLoader] = React.useState(false)
 
 	React.useEffect(() => {
 		// initializeToggle();
 		loadInsights()
-	}, [loader])
+	}, [])
 
 	const [insights, setInsights] = React.useState<any>([])
+	const [ml_addresses, setMl_addresses] = React.useState([])
+	const [predRes, setPredRes] = React.useState<[]>([])
 
+	const printMlData = async(addr: string) => {
+		setLoader(true)
+		const response = await loadMlData(addr)
+		setMl_addresses(response.addresses_found)
+		setPredRes(response.predRes)
+		setLoader(false)
+		console.log(ml_addresses)
+		console.log(response.predRes["access-control"])
+	}
+	
 	const loadInsights = async () => {
 		const origin = "http://localhost:8000"
 
@@ -162,8 +186,6 @@ const Insights = () => {
 				const funcData = await decodeData(insightList[i].data)
 				const verifyAccountVal = await verifyAccount(insightList[i].to)
 				const addressTypeVal = await addressType(insightList[i].to)
-				const mlDataVal = await loadMlData(insightList[i].to)
-				console.log(mlDataVal)
 				let insightObj = await { ...response.data[i] }
 				insightObj["funcDat"] = funcData
 				insightObj["verifyAccountVal"] = verifyAccountVal
@@ -176,7 +198,7 @@ const Insights = () => {
 			console.log("Error -> " + e)
 		}
 	}
-
+	
 	const loadMlData = async (addr: string) => {
         try {
 			const byteAddr = ethers.getAddress(addr)
@@ -185,7 +207,7 @@ const Insights = () => {
                 bytecode: _ret
             });
             console.log(response)
-			return response
+			return response.data
         }catch (e) {
             console.error(e)
         }

@@ -61,6 +61,7 @@ def predict():
     a= loaded_model.predict([x])
     resDf = pd.DataFrame(a)
     predRes = resDf.mean(axis=0).to_list()
+    # predRes=['0','0','0','0','0','0']
     LABELS = {0:'access-control', 1:'arithmetic', 2:'other', 3:'reentrancy', 4:'safe', 5:'unchecked-calls'}
     returnData = {}
     i=0
