@@ -1,0 +1,3 @@
+What does the fox says?
+
+The fox says that milliion of transanction happens everyday on the blockchain and most of the transanctions goes through metamask. At a platform (ethereum), where on an average every 6 sec a transanction is recorded, security and analysis becomes utmost important. This snap provides an idea and a possible implementation of analysing and displaying every important details about a pending transanction, to the user in an simple and concise way.
